@@ -76,7 +76,7 @@ public class DispatcherServlet extends HttpServlet {
     private void proccessFrontendRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         try{
             Controller controller = mapovaniURL.get(request.getServletPath());
-           
+
             if(controller != null){
                 controller.handleRequest(request, response);
             }
@@ -184,7 +184,6 @@ public class DispatcherServlet extends HttpServlet {
              request.getServerName() + ":" + request.getServerPort() +
              request.getContextPath();
   }
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

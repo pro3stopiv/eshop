@@ -15,6 +15,7 @@ public class DB {
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         if(connection == null){
        //     try {
+
                 String url = "jdbc:mysql://localhost:3306/pro3_stopiv";
                 String user = "root";
                 String password = "";

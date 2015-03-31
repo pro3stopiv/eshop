@@ -26,7 +26,7 @@ public class ProduktController implements Controller{
         showDetail(req);
     }
     
-    private void showDetail(HttpServletRequest req) throws SQLException{
+    private void showDetail(HttpServletRequest req) throws SQLException, ClassNotFoundException{
         int id_produkt = Integer.parseInt(req.getParameter("id").toString());
         req.setAttribute("produkt", ProduktService.getProduktById(id_produkt));
     }

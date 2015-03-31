@@ -19,6 +19,7 @@ import model.VyrobceKontakt;
  */
 public class VyrobceService {
     
+    
     public static Vyrobce getVyrobceById(int id) throws SQLException, ClassNotFoundException{
         PreparedStatement ps = db.DB.getConnection().prepareStatement("select id_vyrobce, nazev, popis, latitude, longtitude, altitude, id_kontakt, ulice, cp, psc, mesto, telefon, www, email from vyrobce join vyrobcekontakt using(id_kontakt) where id_vyrobce = ?");
         ps.setInt(1, id);

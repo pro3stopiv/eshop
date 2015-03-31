@@ -18,7 +18,7 @@ import service.KategorieService;
 public class KategorieController implements Controller{
 
     @Override
-    public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws SQLException {
+    public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException {
         req.setAttribute("title", "Kategorie");
         req.setAttribute("view","produkty");
         
@@ -26,7 +26,7 @@ public class KategorieController implements Controller{
         showProducts(req);
     }
     
-    private void showProducts(HttpServletRequest req) throws SQLException{
+    private void showProducts(HttpServletRequest req) throws SQLException, ClassNotFoundException{
         int id_kategorie = Integer.parseInt(req.getParameter("id").toString());
         req.setAttribute("produkty", KategorieService.getProdukty(id_kategorie));
     }
