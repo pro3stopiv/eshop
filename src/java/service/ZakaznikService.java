@@ -21,7 +21,7 @@ public class ZakaznikService {
     
     public static void login(HttpServletRequest request, String email, String password) throws SQLException, ExceptionLogin, NoSuchAlgorithmException, ClassNotFoundException{
         
-        PreparedStatement ps = db.DB.getConnection().prepareStatement("select id_zakaznik from zakaznik where email = ? and heslo = ?");
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select id_zakaznik from Zakaznik where email = ? and heslo = ?");
         ps.setString(1, email);
         ps.setString(2, utils.Hash.getHash(password, "SHA-256"));
         ResultSet rs = ps.executeQuery();

@@ -98,6 +98,7 @@ public class DispatcherServlet extends HttpServlet {
     
     private void proccessAdminRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         try{
+            request.setCharacterEncoding("utf-8");
             Controller controller = mapovaniURLAdmin.get(request.getServletPath());
            
             if(!isAdminLogged(request)){

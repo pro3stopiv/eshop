@@ -2,6 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,11 +17,16 @@ public class DB {
         if(connection == null){
        //     try {
 
-                String url = "jdbc:mysql://localhost:3306/pro3_stopiv";
+                String url = "jdbc:mysql://localhost:3306/pro3_stopiv?useUnicode=yes&characterEncoding=utf8";
                 String user = "root";
                 String password = "";
+                
+              /*  String url = "jdbc:mysql://edu.uhk.cz:3306/dbs2?useUnicode=yes&characterEncoding=utf8";
+                String user = "dbs2";
+                String password = "bsnetcsf";*/
                 Class.forName("com.mysql.jdbc.Driver");
                 connection = DriverManager.getConnection(url, user, password);
+                connection.prepareStatement("set names utf8").execute();
          //   } catch (ClassNotFoundException ex) {
            //     Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
            // } catch (SQLException ex) {
@@ -66,5 +72,13 @@ public class DB {
             }
         }
         return version;
+    }
+    
+    public static int getLastId(PreparedStatement ps) throws SQLException, Exception{
+        ResultSet generatedKeys = ps.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            return generatedKeys.getInt(1);
+        }
+        throw new Exception("Nelze ziskat posledni id");
     }
 }

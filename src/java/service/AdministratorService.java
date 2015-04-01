@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 public class AdministratorService {
     public static void login(HttpServletRequest request, String email, String password) throws SQLException, ExceptionLogin, NoSuchAlgorithmException, ClassNotFoundException{
         
-        PreparedStatement ps = db.DB.getConnection().prepareStatement("select id_administrator from administrator where login = ? and heslo = ?");
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select id_administrator from Administrator where login = ? and heslo = ?");
         ps.setString(1, email);
         ps.setString(2, utils.Hash.getHash(password, "SHA-256"));
         ResultSet rs = ps.executeQuery();

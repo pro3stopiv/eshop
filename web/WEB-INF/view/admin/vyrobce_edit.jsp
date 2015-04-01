@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form method="post">
+<form method="post" action="${base_url}vyrobce.do">
     <table>
         <tr>
             <td>Název</td>
@@ -28,6 +28,7 @@
                 <c:if test="${vyrobce != null}">
                     <input type="hidden" name="id" value="${vyrobce.idVyrobce}" />
                 </c:if>
+                <input type="hidden" name="action" value="edit" />
                 <input type="submit" />
             </td>
         </tr>

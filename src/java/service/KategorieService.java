@@ -23,7 +23,7 @@ public class KategorieService {
         List<Kategorie> kategorie = new ArrayList<>();
         
         
-        PreparedStatement ps = db.DB.getConnection().prepareStatement("select id_kategorie, nazev, popis from kategorie");
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select id_kategorie, nazev, popis from Kategorie");
         ResultSet rs = ps.executeQuery();
       
         while (rs.next()) {
@@ -43,7 +43,7 @@ public class KategorieService {
         
         List<KategorieProdukt> produkty = new ArrayList<>();
         
-        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from kategorieprodukt where id_kategorie = ?");
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from KategorieProdukt where id_kategorie = ?");
         ps.setInt(1, id_kategorie);
         ResultSet rs = ps.executeQuery();
         

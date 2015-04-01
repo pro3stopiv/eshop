@@ -21,7 +21,7 @@ public class ProduktService {
     public static Produkt getProduktById(int id_produkt) throws SQLException, ClassNotFoundException{
         Produkt p = new Produkt();
         
-        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from produkt where id_produkt = ?");
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from Produkt where id_produkt = ?");
         ps.setInt(1, id_produkt);
         ResultSet rs = ps.executeQuery();
         

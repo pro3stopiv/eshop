@@ -21,9 +21,14 @@ public class AdminVyrobceController implements Controller{
 
     @Override
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
-        if(req.getParameter("action") != null && req.getParameter("action").equals("edit")){
+        if(req.getParameter("action") != null && req.getParameter("action").equals("showEdit")){
+            showEdit(req, res);
+        }else if(req.getParameter("action") != null && req.getParameter("action").equals("edit")){
             edit(req, res);
-        }else{
+        }else if(req.getParameter("action") != null && req.getParameter("action").equals("delete")){
+            delete(req, res);
+        }
+        else{
             showList(req, res);
         }
     }
@@ -35,7 +40,7 @@ public class AdminVyrobceController implements Controller{
         req.setAttribute("vyrobci", vyrobci);
     }
     
-    private void edit(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException{
+    private void showEdit(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException{
         if(req.getParameter("id") != null){
             int id_vyrobce = Integer.parseInt(req.getParameter("id").toString());
             Vyrobce vyrobce = VyrobceService.getVyrobceById(id_vyrobce);
@@ -43,5 +48,30 @@ public class AdminVyrobceController implements Controller{
             req.setAttribute("vyrobce", vyrobce);
         }
         req.setAttribute("view", "vyrobce_edit");
+    }
+    
+    private void edit(HttpServletRequest req, HttpServletResponse res) throws SQLException, Exception{
+        Vyrobce vyrobce = new Vyrobce();
+        vyrobce.setNazev(req.getParameter("nazev"));
+        vyrobce.setPopis(req.getParameter("popis"));
+        vyrobce.setAltitude(Double.parseDouble(req.getParameter("altitude")));
+        vyrobce.setLongtitude(Double.parseDouble(req.getParameter("longtitude")));
+        vyrobce.setLatitude(Double.parseDouble(req.getParameter("latitude")));
+        
+        if(req.getParameter("id") != null){
+            vyrobce.setIdVyrobce(Integer.parseInt(req.getParameter("id")));
+        }
+        
+        System.out.println("pred save");
+        VyrobceService.save(vyrobce);
+        
+        showList(req, res);
+        
+    }
+    
+    private void delete(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException{
+        Vyrobce vyrobce = VyrobceService.getVyrobceById(Integer.parseInt(req.getParameter("id")));
+        VyrobceService.delete(vyrobce);
+        showList(req, res);
     }
 }
