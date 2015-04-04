@@ -22,12 +22,16 @@ public class AdminVyrobceController implements Controller{
     @Override
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
         if(req.getParameter("action") != null){
-            if(req.getParameter("action").equals("showEdit")){
-                showEdit(req, res);
-            }else if(req.getParameter("action").equals("edit")){
-                edit(req, res);
-            }else if(req.getParameter("action").equals("delete")){
-                delete(req, res);
+            switch (req.getParameter("action")) {
+                case "showEdit":
+                    showEdit(req, res);
+                    break;
+                case "edit":
+                    edit(req, res);
+                    break;
+                case "delete":
+                    delete(req, res);
+                    break;
             }
         }
         else{
