@@ -22,6 +22,12 @@
                    <li>
                        <a href="${base_url}vyrobce.do">Výrobci</a>
                    </li>
+		   <li>
+                       <a href="${base_url}kategorie.do">Kategorie</a>
+                   </li>
+		   <li>
+                       <a href="${base_url}zpusob_doruceni.do">Způsoby doručení</a>
+                   </li>
                </ul>
            </c:when>
            <c:otherwise>

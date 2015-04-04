@@ -15,6 +15,15 @@ public class ZpusobDoruceni {
     private String nazevZpusobu;
     private double cenaDoruceni;
 
+    public ZpusobDoruceni(int idZpusobDoruceni, String nazevZpusobu, double cenaDoruceni) {
+	this.idZpusobDoruceni = idZpusobDoruceni;
+	this.nazevZpusobu = nazevZpusobu;
+	this.cenaDoruceni = cenaDoruceni;
+    }
+
+    public ZpusobDoruceni() {
+    }
+    
     public int getIdZpusobDoruceni() {
         return idZpusobDoruceni;
     }
@@ -26,5 +35,19 @@ public class ZpusobDoruceni {
     public double getCenaDoruceni() {
         return cenaDoruceni;
     }
+
+    public void setNazevZpusobu(String nazevZpusobu) {
+	this.nazevZpusobu = nazevZpusobu;
+    }
+
+    public void setIdZpusobDoruceni(int idZpusobDoruceni) {
+	this.idZpusobDoruceni = idZpusobDoruceni;
+    }
+
+    public void setCenaDoruceni(double cenaDoruceni) {
+	this.cenaDoruceni = cenaDoruceni;
+    }
+    
+    
     
 }
