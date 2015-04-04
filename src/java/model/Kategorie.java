@@ -38,7 +38,7 @@ public class Kategorie {
         this.popis = popis;
     }
     
-    public int getIdKategorie() {
+    public int getIdKategorie() {        
         return idKategorie;
     }
 

@@ -21,7 +21,7 @@ public class DB {
                 String user = "root";
                 String password = "";
                 
-              /*  String url = "jdbc:mysql://edu.uhk.cz:3306/dbs2?useUnicode=yes&characterEncoding=utf8";
+                /*String url = "jdbc:mysql://edu.uhk.cz:3306/dbs2?useUnicode=yes&characterEncoding=utf8";
                 String user = "dbs2";
                 String password = "bsnetcsf";*/
                 Class.forName("com.mysql.jdbc.Driver");
