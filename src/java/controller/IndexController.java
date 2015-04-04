@@ -18,7 +18,7 @@ public class IndexController implements Controller {
     @Override
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
         req.setAttribute("title", "Osoba");
-        req.setAttribute("view","neco");
+        req.setAttribute("view","uvod");
     }
     
 }

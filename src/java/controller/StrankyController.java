@@ -17,7 +17,17 @@ public class StrankyController implements Controller{
 
     @Override
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        switch(req.getServletPath()){
+            case "/kontakt.do":
+                req.setAttribute("view", "kontakt");
+                break;
+            case "/obchodni-podminky.do":
+                req.setAttribute("view", "podminky");
+                break;
+            case "/o-nas.do":
+                req.setAttribute("view", "o_nas");
+                break;
+        }
     }
     
 }
