@@ -2,7 +2,7 @@
 <ul>
     <c:forEach items="${menuKategorie}" var="kategorie">
         <li>
-            <a href="./kategorie.do?id=${kategorie.getIdKategorie()}">${kategorie.getNazev()}</a>
+            <a href="./kategorie.do?id=${kategorie.idKategorie}">${kategorie.nazev}</a>
         </li>
     </c:forEach>
 </ul>
