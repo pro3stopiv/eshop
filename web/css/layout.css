@@ -1,3 +1,49 @@
-* {
-    color: blue;
+/* 
+    Created on : 31.3.2015, 16:33:20
+    Author     : Azze3
+*/
+
+body {    
+    background-image: url("../images/beer-bg.jpg");   
+    
+    -webkit-background-origin: padding-box;
+    background-origin: padding-box;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+div.obal {
+    background-color: white;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+    font-family: 'Lato', sans-serif;
+
+}
+div.logo {
+    min-height: 200px;       
+}
+div.menu {    
+    min-height: 30px;
+
+}
+div.kategorie {
+    min-height: 500px;
+
+}
+div.obsah {
+    min-height: 500px;
+    margin-top: 10px;
+
+}
+div.paticka {
+    min-height: 50px;
+    text-align: center;
+}
+.form-signin {
+    margin: 0 auto;
+    max-width: 300px;
+}
+#menu-pravo {
+    margin-top: 8px;
 }
