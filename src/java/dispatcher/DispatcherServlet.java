@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import service.AdministratorService;
 import service.KategorieService;
+import service.VyrobceService;
 import service.ZakaznikService;
 
 
@@ -138,6 +139,7 @@ public class DispatcherServlet extends HttpServlet {
     
     private void setGlobalFrontendAttributes(HttpServletRequest request, HttpServletResponse response) throws SQLException, ClassNotFoundException{
         request.setAttribute("menuKategorie", KategorieService.getAllKategorie());
+        request.setAttribute("menuVyrobci", VyrobceService.getAllVyrobce());
         
         if(request.getSession().getAttribute("auth_user") != null){
             request.setAttribute("auth_state", true);
