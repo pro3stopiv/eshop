@@ -26,6 +26,9 @@
                        <a href="${base_url}kategorie.do">Kategorie</a>
                    </li>
 		   <li>
+                       <a href="${base_url}produkt.do">Produkty</a>
+                   </li>
+		   <li>
                        <a href="${base_url}zpusob_doruceni.do">Způsoby doručení</a>
                    </li>
                </ul>

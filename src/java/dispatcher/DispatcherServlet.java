@@ -16,6 +16,7 @@ import controller.StrankyController;
 import controller.VyrobceController;
 import controller.admin.AdminIndexController;
 import controller.admin.AdminKategorieController;
+import controller.admin.AdminProduktController;
 import controller.admin.AdminVyrobceController;
 import controller.admin.AdminZpusobDoruceniController;
 import exceptions.ExceptionLogin;
@@ -23,6 +24,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,6 +57,7 @@ public class DispatcherServlet extends HttpServlet {
        mapovaniURLAdmin.put("/admin/vyrobce.do", new AdminVyrobceController());
        mapovaniURLAdmin.put("/admin/kategorie.do", new AdminKategorieController());
        mapovaniURLAdmin.put("/admin/zpusob_doruceni.do", new AdminZpusobDoruceniController());
+       mapovaniURLAdmin.put("/admin/produkt.do", new AdminProduktController());
     }
     
     public DispatcherServlet() {

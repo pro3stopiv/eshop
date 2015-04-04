@@ -6,6 +6,13 @@
 
 package model;
 
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import service.ProduktService;
+import static service.ProduktService.getKategorieByIdProdukt;
+
 /**
  *
  * @author baresja1
@@ -85,6 +92,23 @@ public class Produkt {
 
     public Vyrobce getVyrobce() {
         return vyrobce;
+    }
+    
+    public Boolean hasKategorie(Kategorie kategorie) {
+	try {
+	    List<Kategorie> ka = ProduktService.getKategorieByIdProdukt(this.idProdukt);
+	    for(Kategorie k : ka) {
+		if(k.getIdKategorie() == kategorie.getIdKategorie()) return true;
+	    }
+	    
+	    
+	} catch (ClassNotFoundException ex) {
+	    Logger.getLogger(Produkt.class.getName()).log(Level.SEVERE, null, ex);
+	} catch (SQLException ex) {
+	    Logger.getLogger(Produkt.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	return false;
+	
     }
        
 }

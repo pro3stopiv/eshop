@@ -8,36 +8,48 @@ package service;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import model.Kategorie;
+import model.KategorieProdukt;
 import model.Produkt;
 import model.Vyrobce;
 
 /**
  *
- * @author Honza
+ * @author Roman
  */
-public class ProduktService {
-    
-    public static Produkt getProduktById(int id_produkt) throws SQLException, ClassNotFoundException{
-        Produkt p = new Produkt();
-        
-        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from Produkt where id_produkt = ?");
-        ps.setInt(1, id_produkt);
-        ResultSet rs = ps.executeQuery();
-        
-        while (rs.next()) {
-            p.setNazev(rs.getString("nazev"));
-            p.setCena(rs.getDouble("cena"));
-            p.setDobaDodani(rs.getInt("dobadodani"));
-            p.setNazevObrazku(rs.getString("nazevobrazku"));
-            p.setObsahAlkoholu(rs.getDouble("obsahalkoholu"));
-            p.setIdProdukt(rs.getInt("id_produkt"));
-            p.setPopis(rs.getString("popis"));
+public class KategorieProduktService {
+       
+    public static void save(List<Integer> kategorie, int id_produktu) throws ClassNotFoundException, Exception{
+	
+	    KategorieProduktService.removeAllbyIdProdukt(id_produktu);
+	    for(Integer k : kategorie) {
+		PreparedStatement ps = db.DB.getConnection().prepareStatement("insert into KategorieProdukt (id_kategorie,id_produkt) values(?,?)",Statement.RETURN_GENERATED_KEYS);
+		ps.setInt(1, k);
+		ps.setInt(2, id_produktu);
+           
+		try {
+		    ps.execute();
+		}
+		catch(SQLException sqle) {
+		    System.out.print("Kategorie:" + k + ",Produkt:" + id_produktu);
+		    System.out.print(sqle.getMessage());
+		}
+	    }
             
-            Vyrobce v = VyrobceService.getVyrobceById(rs.getInt("id_vyrobce"));
-            p.setVyrobce(v);
-        }
-        
-        return p;
+            
+	
     }
+    
+    public static void removeAllbyIdProdukt(int produkt_id) throws ClassNotFoundException, SQLException {
+	PreparedStatement ps = db.DB.getConnection().prepareStatement("delete from KategorieProdukt where id_produkt = ?");
+        ps.setInt(1, produkt_id);
+        ps.execute();
+    }
+    
+    
+    
     
 }
