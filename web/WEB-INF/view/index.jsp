@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link type="text/css" rel="stylesheet" href="<c:url value="/css/layout.css" />" />
         <link type="text/css" rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />" />
-                                                                
+
         <title>${title} | Stopiv</title>
     </head>
     <body>
@@ -42,9 +42,12 @@
                                 <ul class="nav navbar-nav navbar-right" id="menu-pravo">
                                     <c:choose>
                                         <c:when test="${auth_state}">
-                                            Přihlášen ${auth_user}. <a href="?logout=t">Odhlásit</a>
-                                        </c:when>
-                                        <c:otherwise>  
+                                            <form method="post" class="form-inline">                                    
+                                                Přihlášen uživatel ${auth_user}     
+                                                <a href="?logout=t" class="  btn-sm">Odhlásit</a>
+                                            </form>                                                                                                                                                                                                                                                                                                                                                               
+                                            </c:when>
+                                            <c:otherwise>  
                                             <form method="post" class="form-inline" id="login">                                    
                                                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required autofocus>
                                                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Heslo" required>
@@ -74,7 +77,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">
                                         <span class="center-block">
                                             Pivo
                                         </span>
@@ -82,7 +85,7 @@
                                 </h4>
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
+                                <div class="list-group">
                                     <jsp:include page="./menu_kategorie.jsp" />
                                 </div>
                             </div>
@@ -98,7 +101,7 @@
                                 </h4>
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body">
+                                <div class="list-group">
                                     <jsp:include page="./menu_vyrobci.jsp" />
                                 </div>
                             </div>
@@ -108,7 +111,7 @@
                 <div class="col-xs-8 obsah">
                     <!-- obsah -->
                     <jsp:include page="./${view}.jsp" />
-                    
+
                 </div>
             </div>
             <!-- paticka -->

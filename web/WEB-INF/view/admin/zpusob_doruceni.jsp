@@ -1,12 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<ul>
-    <li>
-        <a href="${base_url}zpusob_doruceni.do?action=showEdit">Nový zp&#367;sob doru&#269;ení</a>
-    </li>
+<table class="table table-hover">
+    
+    <a href="${base_url}zpusob_doruceni.do?action=showEdit" class="btn btn-primary">Nový zp&#367;sob doru&#269;ení</a>
+    
     <c:forEach items="${zpusob_doruceni}" var="zpusob_doruceni">
-        <li>
-            <a href="${base_url}zpusob_doruceni.do?action=showEdit&amp;id=${zpusob_doruceni.idZpusobDoruceni}">${zpusob_doruceni.nazevZpusobu}</a>
-            <a href="${base_url}zpusob_doruceni.do?action=delete&amp;id=${zpusob_doruceni.idZpusobDoruceni}">smazat</a>
-        </li>
+        <tr>
+            <td><a href="${base_url}zpusob_doruceni.do?action=showEdit&amp;id=${zpusob_doruceni.idZpusobDoruceni}">${zpusob_doruceni.nazevZpusobu}</a></td>
+            <td><a href="${base_url}zpusob_doruceni.do?action=delete&amp;id=${zpusob_doruceni.idZpusobDoruceni}" class="btn btn-danger">smazat</a></td>
+    </tr>
     </c:forEach>
-</ul>
+</table>

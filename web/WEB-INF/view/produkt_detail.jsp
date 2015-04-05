@@ -1,8 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <h1>${produkt.nazev}</h1>
-${produkt.cena}<br />
-${produkt.popis}<br />
-${produkt.dobaDodani}<br />
-${produkt.obsahAlkoholu}<br />
+<p>Cena: ${produkt.cena}Kč</p>
+<p>Popis: ${produkt.popis}</p>
+<p>Doba dodání: ${produkt.dobaDodani} dní</p>
+<p>Obsah alkoholu: ${produkt.obsahAlkoholu}%</p>
 ${produkt.nazevObrazku}<br />
-<a href="./vyrobce.do?id=${produkt.vyrobce.idVyrobce}">${produkt.vyrobce.nazev}</a>
+
+<p>Výrobce: <a href="./vyrobce.do?id=${produkt.vyrobce.idVyrobce}">${produkt.vyrobce.nazev}</a></p>

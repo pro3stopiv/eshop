@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form method="post" action="${base_url}vyrobce.do">
+<form method="post" action="${base_url}vyrobce.do" class="form-horizontal">
     <table>
         <tr>
             <td>Název</td>

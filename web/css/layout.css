@@ -5,7 +5,7 @@
 
 body {    
     background-image: url("../images/beer-bg.jpg");   
-    
+    background-attachment: fixed;
     -webkit-background-origin: padding-box;
     background-origin: padding-box;
     -webkit-background-clip: border-box;
@@ -46,4 +46,7 @@ div.paticka {
 }
 #menu-pravo {
     margin-top: 8px;
+}
+.list-group-item {
+    line-height: 5px;
 }
