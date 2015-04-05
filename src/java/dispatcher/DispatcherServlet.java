@@ -54,6 +54,7 @@ public class DispatcherServlet extends HttpServlet {
        mapovaniURL.put("/obchodni-podminky.do", new StrankyController());
        mapovaniURL.put("/o-nas.do", new StrankyController());
        
+       mapovaniURLAdmin.put("/admin/", new AdminIndexController());
        mapovaniURLAdmin.put("/admin/index.do", new AdminIndexController());
        mapovaniURLAdmin.put("/admin/vyrobce.do", new AdminVyrobceController());
        mapovaniURLAdmin.put("/admin/kategorie.do", new AdminKategorieController());
