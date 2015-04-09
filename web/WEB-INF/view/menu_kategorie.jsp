@@ -1,8 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<ul class="list-group">
-    <c:forEach items="${menuKategorie}" var="kategorie">
-        <li class="list-group-item">
-            <a href="./kategorie.do?id=${kategorie.idKategorie}">${kategorie.nazev}</a>
-        </li>
+<div class="list-group">
+    <h3>Pivo</h3>
+    <c:forEach items="${menuKategorie}" var="kategorie">        
+
+        <strong><a href="./kategorie.do?id=${kategorie.idKategorie}" class="list-group-item">${kategorie.nazev}</a></strong>
+
     </c:forEach>
-</ul>
+</div>

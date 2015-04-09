@@ -12,8 +12,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link type="text/css" rel="stylesheet" href="<c:url value="/css/bootstrap.css" />" />
         <link type="text/css" rel="stylesheet" href="<c:url value="/css/layout.css" />" />
-        <link type="text/css" rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />" />
 
         <title>${title} | Stopiv</title>
     </head>
@@ -34,7 +34,7 @@
                             </div>
                             <div class="collapse navbar-collapse" id="menu">
                                 <ul class="nav navbar-nav">
-                                    <li class="active"><a href="${base_url}index.do">Úvod</a></li>
+                                    <li><a href="${base_url}index.do">Úvod</a></li>
                                     <li><a href="${base_url}kontakt.do">Kontakty</a></li>
                                     <li><a href="${base_url}obchodni-podminky.do">Obchodní podmínky</a></li>
                                     <li><a href="${base_url}o-nas.do">O nás</a></li>
@@ -46,8 +46,8 @@
                                                 Přihlášen uživatel ${auth_user}     
                                                 <a href="?logout=t" class="  btn-sm">Odhlásit</a>
                                             </form>                                                                                                                                                                                                                                                                                                                                                               
-                                            </c:when>
-                                            <c:otherwise>  
+                                        </c:when>
+                                        <c:otherwise>  
                                             <form method="post" class="form-inline" id="login">                                    
                                                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required autofocus>
                                                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Heslo" required>
@@ -72,41 +72,12 @@
                             <input type="text" class="form-control input-sm right" placeholder="hledat">
                         </div>
                         <button type="submit" class="btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></button>                                    
+
+
+                        <jsp:include page="./menu_kategorie.jsp" />
+
+                        <jsp:include page="./menu_vyrobci.jsp" />
                     </form>
-                    <div class="panel-group" id="accordion" role="tablist">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <h4 class="panel-title">
-                                    
-                                        <span class="center-block">
-                                            Pivo
-                                        </span>
-                                     
-                                </h4>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="list-group">
-                                    <jsp:include page="./menu_kategorie.jsp" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <h4 class="panel-title">
-                                    
-                                        <span class="center-block">
-                                            Pivovary
-                                        </span>
-                                    
-                                </h4>
-                            </div>
-                            <div class="panel-default">
-                                <div class="list-group">
-                                    <jsp:include page="./menu_vyrobci.jsp" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-xs-8 obsah">
                     <!-- obsah -->
