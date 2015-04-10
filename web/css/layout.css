@@ -23,13 +23,8 @@ div.obal {
 div.logo {
     min-height: 200px;       
 }
-div.menu {    
-    min-height: 30px;
-
-}
 div.kategorie {
     min-height: 500px;
-
 }
 div.obsah {
     min-height: 500px;
@@ -48,5 +43,11 @@ div.paticka {
     margin-top: 8px;
 }
 .list-group-item {
-    line-height: 5px;
+    line-height: 0px;
+
+}
+
+.panel:last-child {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
