@@ -44,7 +44,7 @@ div.paticka {
 }
 .list-group-item {
     line-height: 0px;
-
+    border: none;
 }
 
 .panel:last-child {
