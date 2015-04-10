@@ -47,21 +47,35 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-       mapovaniURL.put("/index.do", new IndexController());
-       mapovaniURL.put("/kategorie.do", new KategorieController());
-       mapovaniURL.put("/produkt.do", new ProduktController());
-       mapovaniURL.put("/vyrobce.do", new VyrobceController());
-       mapovaniURL.put("/kontakt.do", new StrankyController());
-       mapovaniURL.put("/obchodni-podminky.do", new StrankyController());
-       mapovaniURL.put("/o-nas.do", new StrankyController());
-       mapovaniURL.put("/kosik.do", new ObjednavkaController());
+       HashMap<String, Controller> controllers = new HashMap<>();
+       controllers.put("index", new IndexController());
+       controllers.put("kategorie", new KategorieController());
+       controllers.put("produkt", new ProduktController());
+       controllers.put("vyrobce", new VyrobceController());
+       controllers.put("stranky", new StrankyController());
+       controllers.put("objednavka", new ObjednavkaController());
+       controllers.put("admin.index", new AdminIndexController());
+       controllers.put("admin.vyrobce", new AdminVyrobceController());
+       controllers.put("admin.kategorie", new AdminKategorieController());
+       controllers.put("admin.zpusob_doruceni", new AdminZpusobDoruceniController());
+       controllers.put("admin.produkt", new AdminProduktController());
+        
+        
+       mapovaniURL.put("/index.do", controllers.get("index"));
+       mapovaniURL.put("/kategorie.do", controllers.get("kategorie"));
+       mapovaniURL.put("/produkt.do", controllers.get("produkt"));
+       mapovaniURL.put("/vyrobce.do", controllers.get("vyrobce"));
+       mapovaniURL.put("/kontakt.do", controllers.get("stranky"));
+       mapovaniURL.put("/obchodni-podminky.do", controllers.get("stranky"));
+       mapovaniURL.put("/o-nas.do", controllers.get("stranky"));
+       mapovaniURL.put("/kosik.do", controllers.get("objednavka"));
        
-       mapovaniURLAdmin.put("/admin/", new AdminIndexController());
-       mapovaniURLAdmin.put("/admin/index.do", new AdminIndexController());
-       mapovaniURLAdmin.put("/admin/vyrobce.do", new AdminVyrobceController());
-       mapovaniURLAdmin.put("/admin/kategorie.do", new AdminKategorieController());
-       mapovaniURLAdmin.put("/admin/zpusob_doruceni.do", new AdminZpusobDoruceniController());
-       mapovaniURLAdmin.put("/admin/produkt.do", new AdminProduktController());
+       mapovaniURLAdmin.put("/admin/", controllers.get("admin.index"));
+       mapovaniURLAdmin.put("/admin/index.do", controllers.get("admin.index"));
+       mapovaniURLAdmin.put("/admin/vyrobce.do", controllers.get("admin.vyrobce"));
+       mapovaniURLAdmin.put("/admin/kategorie.do", controllers.get("admin.kategorie"));
+       mapovaniURLAdmin.put("/admin/zpusob_doruceni.do", controllers.get("admin.zpusob_doruceni"));
+       mapovaniURLAdmin.put("/admin/produkt.do", controllers.get("admin.produkt"));
     }
     
     public DispatcherServlet() {
