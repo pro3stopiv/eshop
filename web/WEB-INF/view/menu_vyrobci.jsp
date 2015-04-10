@@ -2,8 +2,6 @@
 <div class="list-group">
     <h3>Pivovary</h3>
     <c:forEach items="${menuVyrobci}" var="vyrobce">
-        
-        <strong><a href="./vyrobceVypis.do?id=${vyrobce.idVyrobce}" class="list-group-item">${vyrobce.nazev}</a></strong>
-        
+        <a href="./vyrobceVypis.do?id=${vyrobce.idVyrobce}" class="list-group-item">${vyrobce.nazev}</a>
     </c:forEach>
 </div>
