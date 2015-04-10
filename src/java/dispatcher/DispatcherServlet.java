@@ -28,6 +28,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import service.AdministratorService;
 import service.KategorieService;
 import service.VyrobceService;
@@ -53,6 +54,7 @@ public class DispatcherServlet extends HttpServlet {
        mapovaniURL.put("/kontakt.do", new StrankyController());
        mapovaniURL.put("/obchodni-podminky.do", new StrankyController());
        mapovaniURL.put("/o-nas.do", new StrankyController());
+       mapovaniURL.put("/kosik.do", new ObjednavkaController());
        
        mapovaniURLAdmin.put("/admin/", new AdminIndexController());
        mapovaniURLAdmin.put("/admin/index.do", new AdminIndexController());
@@ -88,6 +90,12 @@ public class DispatcherServlet extends HttpServlet {
     
     private void proccessFrontendRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         try{
+            HttpSession session = request.getSession();
+            if(session.getAttribute("cart") == null){
+                session.setAttribute("cart", new HashMap<>());
+            }
+            
+            
             Controller controller = mapovaniURL.get(request.getServletPath());
 
             if(controller != null){

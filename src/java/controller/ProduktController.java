@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import service.KategorieService;
+import service.ObjednavkaService;
 import service.ProduktService;
 
 /**
@@ -20,15 +21,31 @@ public class ProduktController implements Controller{
 
     @Override
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
-        req.setAttribute("title", "Produkt");
-        req.setAttribute("view", "produkt_detail");
         
-        showDetail(req);
+        if(req.getParameter("action") != null){
+            switch (req.getParameter("action")) {
+                case "addToCart":
+                    addToCart(req);
+                    break;
+               }
+        }
+        //else{
+            showDetail(req);
+       // }
     }
     
     private void showDetail(HttpServletRequest req) throws SQLException, ClassNotFoundException{
         int id_produkt = Integer.parseInt(req.getParameter("id").toString());
+        req.setAttribute("title", "Produkt");
+        req.setAttribute("view", "produkt_detail");
         req.setAttribute("produkt", ProduktService.getProduktById(id_produkt));
+    }
+    
+    private void addToCart(HttpServletRequest req){
+        int id_produkt = Integer.parseInt(req.getParameter("id_produkt").toString());
+        int pocet = Integer.parseInt(req.getParameter("pocet").toString());
+        
+        ObjednavkaService.addToCart(id_produkt, pocet, req);
     }
     
 }

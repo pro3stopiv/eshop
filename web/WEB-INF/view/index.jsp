@@ -38,6 +38,7 @@
                                     <li><a href="${base_url}kontakt.do">Kontakty</a></li>
                                     <li><a href="${base_url}obchodni-podminky.do">Obchodní podmínky</a></li>
                                     <li><a href="${base_url}o-nas.do">O nás</a></li>
+                                    <li><a href="${base_url}kosik.do">Košík</a></li>
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right" id="menu-pravo">
                                     <c:choose>
