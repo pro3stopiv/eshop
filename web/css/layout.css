@@ -51,3 +51,6 @@ div.paticka {
     margin-bottom: 0px;
     padding-bottom: 0px;
 }
+#btn-remove {
+    text-decoration: none;
+}
