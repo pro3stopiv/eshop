@@ -53,7 +53,7 @@
                                                 <input type="text" class="form-control" name="login" placeholder="Login" required autofocus>
                                                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Heslo" required>
                                                 <input type="submit" class="btn btn-md btn-primary" value="Přihlásit"/>
-                                                <a href="#">Registrovat</a>
+                                                
                                                 <input type="hidden" name="action" value="login" />                               
                                             </form>
                                         </c:otherwise>

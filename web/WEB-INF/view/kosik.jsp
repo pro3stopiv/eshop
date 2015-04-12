@@ -27,6 +27,9 @@
                         <td>Celkem položek: <strong>10</strong> </td>
                         <td></td>
                         <td>Celková cena: <strong>150 Kč</strong></td>
+                        <td>
+                            <a href="#" class="btn btn-primary" id="btn-order" >Objednat</a>
+                        </td>
                     </tr>
                 </table>
             </form>

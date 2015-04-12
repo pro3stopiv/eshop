@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author baresja1
  */
-public class StrankyController implements Controller{
+public class StrankyController implements Controller {
 
     @Override
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) {
-        switch(req.getServletPath()){
+        switch (req.getServletPath()) {
             case "/kontakt.do":
                 req.setAttribute("view", "kontakt");
                 break;
@@ -29,5 +28,5 @@ public class StrankyController implements Controller{
                 break;
         }
     }
-    
+
 }

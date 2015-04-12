@@ -53,7 +53,7 @@
                                                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required autofocus>
                                                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Heslo" required>
                                                 <input type="submit" class="btn btn-md btn-primary" value="Přihlásit"/>
-                                                <a href="#">Registrovat</a>
+                                                <a href="${base_url}registrace.do">Registrovat</a>
                                                 <input type="hidden" name="action" value="login" />                               
                                             </form>
                                         </c:otherwise>

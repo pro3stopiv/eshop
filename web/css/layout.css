@@ -54,3 +54,9 @@ div.paticka {
 #btn-remove {
     text-decoration: none;
 }
+#btn-order {
+    float: right;
+}
+#form-registrace input {
+    margin: 10px;
+}
