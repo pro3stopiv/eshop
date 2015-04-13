@@ -4,7 +4,7 @@
 
 
 <c:choose>
-    <c:when  test="${produkty.size() == 0}">
+    <c:when  test="${polozky.size() == 0}">
         <p>Košík je prázdný</p>
     </c:when>
     <c:otherwise>
@@ -12,21 +12,26 @@
 
             <form method="post" class="form-group">
                 <table class="table">
-                    <c:forEach var="type" items="${produkty}">
+                    <c:forEach var="item" items="${polozky}">
                         <tr>
                             <td><img src="pivo.jpg" width="100" height="100"/></td>
-                            <td>Id produkt: <strong>${type.key}</strong></td>
-                            <td>Cena: <strong>50Kč</strong></td>
+                            <td>Název <strong>${produkty.get(item.key).nazev}</strong></td>
+                            <td>Cena za ks: <strong>${produkty.get(item.key).cena}Kč</strong></td>
                             <td>
-                                Počet kusů: <input type="number" name="pocet[${type.key}]" value="${type.value}" />
-                                <button><a class="glyphicon glyphicon-remove" id="btn-remove" href="kosik.do?action=removeItem&amp;id=${type.key}"></a></button>
+                                Počet kusů: <input type="number" name="pocet[${item.key}]" value="${item.value}" />
+                            </td>
+                            <td>
+                                Cena celkem: <strong>${produkty.get(item.key).cena * item.value}Kč</strong>
+                            </td>
+                            <td>
+                                <a class="glyphicon glyphicon-remove" id="btn-remove" href="kosik.do?action=removeItem&amp;id=${item.key}"></a>
                             </td>
                         </tr>
                     </c:forEach>
                     <tr>
-                        <td>Celkem položek: <strong>10</strong> </td>
+                        <td>Celkem položek: <strong>${polozky.size()}</strong> </td>
                         <td></td>
-                        <td>Celková cena: <strong>150 Kč</strong></td>
+                        <td>Celková cena: <strong>${totalPrice} Kč</strong></td>
                         <td>
                             <a href="#" class="btn btn-primary" id="btn-order" >Objednat</a>
                         </td>

@@ -6,6 +6,7 @@
 
 package controller;
 
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import service.ObjednavkaService;
@@ -18,7 +19,7 @@ import service.ProduktService;
 public class ObjednavkaController implements Controller{
 
     @Override
-    public void handleRequest(HttpServletRequest req, HttpServletResponse res) {
+    public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException {
         if(req.getParameter("action") != null){
             switch (req.getParameter("action")) {
                 case "removeItem":
@@ -29,10 +30,12 @@ public class ObjednavkaController implements Controller{
         showCart(req, res);
     }
     
-    private void showCart(HttpServletRequest req, HttpServletResponse res){
+    private void showCart(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException{
         req.setAttribute("title", "Košík");
         req.setAttribute("view", "kosik");
-        req.setAttribute("produkty", req.getSession().getAttribute("cart"));
+        req.setAttribute("polozky", req.getSession().getAttribute("cart"));
+        req.setAttribute("produkty", ObjednavkaService.getProductsFromCart(req));
+        req.setAttribute("totalPrice", ObjednavkaService.getCartTotalPrice(req));
     }
     
     private void removeItem(HttpServletRequest req, HttpServletResponse res){

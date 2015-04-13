@@ -6,9 +6,12 @@
 
 package service;
 
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import model.Produkt;
 
 /**
  *
@@ -44,5 +47,26 @@ public class ObjednavkaService {
             
     }
     
+    public static HashMap<Integer, Produkt> getProductsFromCart(HttpServletRequest req) throws SQLException, ClassNotFoundException{
+        HashMap<Integer, Produkt> produkty = new HashMap<>();
+        
+        HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) req.getSession().getAttribute("cart");
+        for (Map.Entry<Integer, Integer> item : cart.entrySet()) {
+            produkty.put(item.getKey(), ProduktService.getProduktById(item.getKey()));
+            
+        }
+        
+        return produkty;
+    }
+    
+    public static double getCartTotalPrice(HttpServletRequest req) throws SQLException, ClassNotFoundException{
+        double price = 0;
+        HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) req.getSession().getAttribute("cart");
+        for (Map.Entry<Integer, Integer> item : cart.entrySet()) {
+            Produkt p = ProduktService.getProduktById(item.getKey());
+            price += p.getCena() * item.getValue();
+        }
+        return price;
+    }
     
 }
