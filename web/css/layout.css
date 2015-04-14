@@ -55,8 +55,11 @@ div.paticka {
     text-decoration: none;
 }
 #btn-order {
-    float: right;
+    width: 200px;
 }
 #form-registrace input {
     margin: 10px;
+}
+.fakturacni-adr {
+    display: block;
 }

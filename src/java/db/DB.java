@@ -17,14 +17,14 @@ public class DB {
         if(connection == null){
        //     try {
 
-           /*     String url = "jdbc:mysql://localhost:3306/dbs2?useUnicode=yes&characterEncoding=utf8";
-                String user = "root";
-                String password = "";*/
-            
-            
-                String url = "jdbc:mysql://localhost:3306/pro3_stopiv?useUnicode=yes&characterEncoding=utf8";
+                String url = "jdbc:mysql://localhost:3306/dbs2?useUnicode=yes&characterEncoding=utf8";
                 String user = "root";
                 String password = "";
+            
+            
+             /*   String url = "jdbc:mysql://localhost:3306/pro3_stopiv?useUnicode=yes&characterEncoding=utf8";
+                String user = "root";
+                String password = "";*/
                 
                 /*String url = "jdbc:mysql://edu.uhk.cz:3306/dbs2?useUnicode=yes&characterEncoding=utf8";
                 String user = "dbs2";
