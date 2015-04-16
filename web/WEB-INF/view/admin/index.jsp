@@ -42,9 +42,9 @@
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right" id="menu-pravo">
                                     <c:choose>
-                                        <c:when test="${auth_state}">
+                                        <c:when test="${admin_auth_state}">
                                             <form method="post" class="form-inline">                                    
-                                                Přihlášen uživatel ${auth_user}     
+                                                Přihlášen uživatel ${admin_auth_user.login}     
                                                 <a href="?logout=t" class="  btn-sm">Odhlásit</a>
                                             </form>
                                         </c:when>

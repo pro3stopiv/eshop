@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import model.Administrator;
+import model.Adresa;
+import model.Zakaznik;
 
 /**
  *
@@ -27,7 +30,8 @@ public class AdministratorService {
         
         if(rs.next()){
             HttpSession session = request.getSession();
-            session.setAttribute("admin_auth_user", rs.getInt("id_administrator"));
+            Administrator administrator = getAdministratorById(rs.getInt("id_administrator"));
+            session.setAttribute("admin_auth_user", administrator);
         }else{
             throw new ExceptionLogin("Přihlášení se nepodařilo");
         }
@@ -37,5 +41,23 @@ public class AdministratorService {
     public static void logout(HttpServletRequest request){
         HttpSession session = request.getSession();
         session.removeAttribute("admin_auth_user");
+    }
+    
+     
+    public static Administrator getAdministratorById(int id) throws SQLException, ClassNotFoundException{
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from Administrator where id_administrator = ?");
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        
+        Administrator administrator = new Administrator();
+        
+        while (rs.next()) {
+            administrator.setIdAdministrator(rs.getInt("id_administrator"));
+            administrator.setLogin(rs.getString("login"));
+            administrator.setHeslo(rs.getString("heslo"));
+        }
+        
+        return administrator;
+        
     }
 }

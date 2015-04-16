@@ -12,6 +12,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import model.Adresa;
+import model.Vyrobce;
+import model.VyrobceKontakt;
+import model.Zakaznik;
 
 /**
  *
@@ -28,7 +32,8 @@ public class ZakaznikService {
         
         if(rs.next()){
             HttpSession session = request.getSession();
-            session.setAttribute("auth_user", rs.getInt("id_zakaznik"));
+            Zakaznik zakaznik = getZakaznikById(rs.getInt("id_zakaznik"));
+            session.setAttribute("auth_user", zakaznik);
         }else{
             throw new ExceptionLogin("Přihlášení se nepodařilo");
         }
@@ -38,5 +43,30 @@ public class ZakaznikService {
     public static void logout(HttpServletRequest request){
         HttpSession session = request.getSession();
         session.removeAttribute("auth_user");
+    }
+    
+    public static Zakaznik getZakaznikById(int id) throws SQLException, ClassNotFoundException{
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from Zakaznik join Adresa using(id_adresa) where id_zakaznik = ?");
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        
+        Zakaznik zakaznik = new Zakaznik();
+        Adresa adresa = new Adresa();
+        
+        while (rs.next()) {
+            zakaznik.setIdZakaznik(rs.getInt("id_zakaznik"));
+            zakaznik.setEmail(rs.getString("email"));
+            zakaznik.setJmeno(rs.getString("jmeno"));
+            zakaznik.setPrijmeni(rs.getString("prijmeni"));
+            zakaznik.setTelefon(rs.getString("telefon"));
+            
+            adresa.setIdAdresa(rs.getInt("id_adresa"));
+        }
+        
+        zakaznik.setAdresa(adresa);
+        
+        
+        return zakaznik;
+        
     }
 }

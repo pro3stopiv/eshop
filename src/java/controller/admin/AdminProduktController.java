@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,15 +96,10 @@ public class AdminProduktController implements Controller{
 	
 	
 	
-	produkt.setNazevObrazku("a");
+	//produkt.setNazevObrazku("a");
 	//if(req.getParameter("obrazek") != "") {
 	    // TODO: ulozit obrazek
-
-
-	//}
-	
-	
-	
+        
         if(req.getParameter("id") != null){
             produkt.setIdProdukt(Integer.parseInt(req.getParameter("id")));
         }
@@ -119,6 +115,16 @@ public class AdminProduktController implements Controller{
 	KategorieProduktService.save(kat,pk.getIdProdukt());
         showList(req, res);
         
+    }
+    
+    private static String getFileName(Part part) {
+        for (String cd : part.getHeader("content-disposition").split(";")) {
+            if (cd.trim().startsWith("filename")) {
+                String fileName = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+                return fileName.substring(fileName.lastIndexOf('/') + 1).substring(fileName.lastIndexOf('\\') + 1); // MSIE fix.
+            }
+        }
+        return null;
     }
     
     private void delete(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException{

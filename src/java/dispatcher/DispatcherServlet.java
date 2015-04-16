@@ -187,10 +187,10 @@ public class DispatcherServlet extends HttpServlet {
     
     private void setGlobalAdminAttributes(HttpServletRequest request, HttpServletResponse reponse) {
         if(request.getSession().getAttribute("admin_auth_user") != null){
-            request.setAttribute("auth_state", true);
-            request.setAttribute("auth_user", request.getSession().getAttribute("admin_auth_user"));
+            request.setAttribute("admin_auth_state", true);
+            request.setAttribute("admin_auth_user", request.getSession().getAttribute("admin_auth_user"));
         }else{
-            request.setAttribute("auth_state", false);
+            request.setAttribute("admin_auth_state", false);
         }
         request.setAttribute("base_url", getBaseUrl(request)+"/admin/");
     }

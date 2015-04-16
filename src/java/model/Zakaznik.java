@@ -46,6 +46,35 @@ public class Zakaznik {
     public Adresa getAdresa() {
         return adresa;
     }
+
+    public void setIdZakaznik(int idZakaznik) {
+        this.idZakaznik = idZakaznik;
+    }
+
+    public void setJmeno(String jmeno) {
+        this.jmeno = jmeno;
+    }
+
+    public void setPrijmeni(String prijmeni) {
+        this.prijmeni = prijmeni;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setHeslo(String heslo) {
+        this.heslo = heslo;
+    }
+
+    public void setTelefon(String telefon) {
+        this.telefon = telefon;
+    }
+
+    public void setAdresa(Adresa adresa) {
+        this.adresa = adresa;
+    }
+    
     
     
 }
