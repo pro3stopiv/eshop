@@ -81,7 +81,7 @@ public class ProduktService {
     }
     
     
-public static Produkt save(Produkt produkt) throws ClassNotFoundException, SQLException, Exception{
+    public static Produkt save(Produkt produkt) throws ClassNotFoundException, SQLException, Exception{
 
         
         // udpate

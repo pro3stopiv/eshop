@@ -49,5 +49,34 @@ public class Objednavka {
     public List<ObjednavkaProdukt> getProdukty() {
         return produkty;
     }
+
+    public void setIdObjednavka(int idObjednavka) {
+        this.idObjednavka = idObjednavka;
+    }
+
+    public void setDatum(Date datum) {
+        this.datum = datum;
+    }
+
+    public void setCenaDoruceni(double cenaDoruceni) {
+        this.cenaDoruceni = cenaDoruceni;
+    }
+
+    public void setStav(int stav) {
+        this.stav = stav;
+    }
+
+    public void setZpusobDoruceni(ZpusobDoruceni zpusobDoruceni) {
+        this.zpusobDoruceni = zpusobDoruceni;
+    }
+
+    public void setZakaznik(Zakaznik zakaznik) {
+        this.zakaznik = zakaznik;
+    }
+
+    public void setProdukty(List<ObjednavkaProdukt> produkty) {
+        this.produkty = produkty;
+    }
+    
     
 }

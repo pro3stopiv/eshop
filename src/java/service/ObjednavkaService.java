@@ -6,12 +6,19 @@
 
 package service;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import model.Objednavka;
 import model.Produkt;
+import model.Vyrobce;
+import model.Zakaznik;
+import model.ZpusobDoruceni;
 
 /**
  *
@@ -67,6 +74,41 @@ public class ObjednavkaService {
             price += p.getCena() * item.getValue();
         }
         return price;
+    }
+    
+     public static Objednavka save(Objednavka objednavka) throws ClassNotFoundException, SQLException, Exception{
+
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("insert into Objednavka (datum,cenaDoruceni,stav,id_zpusobDoruceni,id_zakaznik) values(NOW(),?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+        ps.setDouble(1, objednavka.getCenaDoruceni());
+        ps.setInt(2, objednavka.getStav());
+        ps.setInt(3, objednavka.getZpusobDoruceni().getIdZpusobDoruceni());
+        ps.setInt(4, objednavka.getZakaznik().getIdZakaznik());
+        ps.execute();
+
+        int id = db.DB.getLastId(ps);
+
+        objednavka = getObjednavkaById(id);
+
+        return objednavka;
+    }
+     
+    public static Objednavka getObjednavkaById(int id_objednavka) throws SQLException, ClassNotFoundException{
+        Objednavka objednavka = new Objednavka();
+
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from Objednavka where id_objednavka = ?");
+        ps.setInt(1, id_objednavka);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+           objednavka.setIdObjednavka(rs.getInt("id_objednavka"));
+           objednavka.setDatum(rs.getDate("datum"));
+           objednavka.setCenaDoruceni(rs.getDouble("cenaDoruceni"));
+           objednavka.setStav(rs.getInt("stav"));
+           objednavka.setZpusobDoruceni(ZpusobDoruceniService.getZpusobDoruceniById(rs.getInt("id_zpusobDoruceni")));
+           objednavka.setZakaznik(ZakaznikService.getZakaznikById(rs.getInt("id_zakaznik")));
+        }
+        
+        return objednavka;
     }
     
 }

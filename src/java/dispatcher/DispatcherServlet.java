@@ -93,6 +93,8 @@ public class DispatcherServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        request.setCharacterEncoding("utf-8");
+        
         if(request.getServletPath().matches("^/admin/.*")){
             proccessAdminRequest(request, response);
         }else{
@@ -133,7 +135,6 @@ public class DispatcherServlet extends HttpServlet {
     
     private void proccessAdminRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         try{
-            request.setCharacterEncoding("utf-8");
             Controller controller = mapovaniURLAdmin.get(request.getServletPath());
            
             if(!isAdminLogged(request)){

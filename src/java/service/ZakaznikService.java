@@ -10,9 +10,11 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import model.Adresa;
+import model.Produkt;
 import model.Vyrobce;
 import model.VyrobceKontakt;
 import model.Zakaznik;
@@ -68,5 +70,26 @@ public class ZakaznikService {
         
         return zakaznik;
         
+    }
+    
+        
+    
+    public static Zakaznik save(Zakaznik zakaznik) throws ClassNotFoundException, SQLException, Exception{
+
+            PreparedStatement ps = db.DB.getConnection().prepareStatement("insert into Zakaznik (jmeno,prijmeni,email,heslo,telefon,id_adresa) values(?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, zakaznik.getJmeno());
+            ps.setString(2, zakaznik.getPrijmeni());
+            ps.setString(3, zakaznik.getEmail());
+            ps.setString(4, zakaznik.getHeslo());
+            ps.setString(5, zakaznik.getTelefon());
+            ps.setInt(6, zakaznik.getAdresa().getIdAdresa());
+            
+            ps.execute();
+            
+            int id = db.DB.getLastId(ps);
+            
+            zakaznik = ZakaznikService.getZakaznikById(id);
+            
+            return zakaznik;
     }
 }
