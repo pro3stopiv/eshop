@@ -78,16 +78,9 @@ public class AdminProduktController implements Controller{
         produkt.setPopis(req.getParameter("popis"));
 	produkt.setDobaDodani(Integer.parseInt(req.getParameter("doba_dodani")));
 	produkt.setObsahAlkoholu(Double.parseDouble(req.getParameter("obsah_alkoholu")));
+	produkt.setNazevObrazku(req.getParameter("obrazek"));
 	Vyrobce v = VyrobceService.getVyrobceById(Integer.parseInt(req.getParameter("vyrobce")));
 	produkt.setVyrobce(v);
-	
-	
-	
-	
-	
-	//produkt.setNazevObrazku("a");
-	//if(req.getParameter("obrazek") != "") {
-	    // TODO: ulozit obrazek
         
         if(req.getParameter("id") != null){
             produkt.setIdProdukt(Integer.parseInt(req.getParameter("id")));

@@ -3,6 +3,7 @@
 <table class="table table-hover">
     <thead>
 	<tr>
+	    <th>Obrázek</th>
 	    <th>Název</th>
 	    <th>Cena</th>
 	    <th>Doba dodání</th>
@@ -14,6 +15,7 @@
     </thead>
     <c:forEach items="${produkty}" var="produkt">
         <tr>
+	    <td><img src="${produkt.nazevObrazku}" alt="${produkt.nazev}" style="width: 50px; height: 50px;" /></td>
             <td><a href="${base_url}produkt.do?action=showEdit&amp;id=${produkt.idProdukt}">${produkt.nazev}</a></td>
 	    <td>${produkt.cena} K&#269;</td>
 	    <td>${produkt.dobaDodani} dní</td>

@@ -27,9 +27,9 @@
             <td>Obrázek</td>
             <td>
 		<c:if test="${produkt != null}">
-		    <img src="${produkt.nazevObrazku}" alt="obrazek" />
+		    <img src="${produkt.nazevObrazku}" alt="obrazek" style="width: 50px;" />
 		</c:if>
-		<input type="file" name="obrazek" />
+		<input name="obrazek" <c:if test="${produkt != null}">value="${produkt.nazevObrazku}"</c:if>  />
 	    </td>
         </tr>
 	<tr>
