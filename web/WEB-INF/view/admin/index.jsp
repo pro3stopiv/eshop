@@ -15,7 +15,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link type="text/css" rel="stylesheet" href="<c:url value="/css/layout.css" />" />
         <link type="text/css" rel="stylesheet" href="<c:url value="/css/bootstrap.min.css" />" />
-
         <title>${title} | Stopiv</title>
     </head>
     <body>

@@ -63,3 +63,8 @@ div.paticka {
 .fakturacni-adr {
     display: block;
 }
+
+#map {
+    width: 480px;
+    height: 240px;
+}

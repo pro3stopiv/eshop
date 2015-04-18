@@ -6,7 +6,8 @@
 <p>Popis: ${produkt.popis}</p>
 <p>Doba dodání: ${produkt.dobaDodani} dní</p>
 <p>Obsah alkoholu: ${produkt.obsahAlkoholu}%</p>
-${produkt.nazevObrazku}<br />
+<img src="${produkt.nazevObrazku}" />
+<br />
 
 <h2>Objednat</h2>
 <form method="post">

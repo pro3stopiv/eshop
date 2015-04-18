@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link type="text/css" rel="stylesheet" href="<c:url value="/css/bootstrap.css" />" />
         <link type="text/css" rel="stylesheet" href="<c:url value="/css/layout.css" />" />
-
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>	
         <title>${title} | Stopiv</title>
     </head>
     <body>
@@ -105,7 +105,7 @@
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="<c:url value="/js/bootstrap.min.js" />"></script>                                                     
-
+        <script src="<c:url value="/js/bootstrap.min.js" />"></script>        
+	
     </body>
 </html>
