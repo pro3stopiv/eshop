@@ -21,7 +21,9 @@ public class Objednavka {
     private ZpusobDoruceni zpusobDoruceni;
     private Zakaznik zakaznik;
     private List<ObjednavkaProdukt> produkty;
-
+    
+    private static final String[] stavyObjednavky = {"Nová","Zpracovává se", "Vyřízená", "Storno"};
+    
     public int getIdObjednavka() {
         return idObjednavka;
     }
@@ -77,6 +79,33 @@ public class Objednavka {
     public void setProdukty(List<ObjednavkaProdukt> produkty) {
         this.produkty = produkty;
     }
+
+    public double getCelkovaCena() {
+	double cena = cenaDoruceni;
+	for(ObjednavkaProdukt op : produkty) {
+	    double c = op.getPocetKusu() * op.getCena();
+	    cena += c;
+	}
+	return cena;
+    }
     
+    public String getStavObjednavky() {
+	String stav = "N/A";
+	try {
+	    stav = stavyObjednavky[this.stav-1];
+	}
+	catch(ArrayIndexOutOfBoundsException e) {
+	    
+	}
+	return stav;
+    }
+
+    public String[] getStavyObjednavky() {
+	return stavyObjednavky;
+    }
+    
+    public int getPocetStavuObjednavky() {
+	return stavyObjednavky.length;
+    }
     
 }

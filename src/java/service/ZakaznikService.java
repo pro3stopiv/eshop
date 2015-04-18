@@ -61,10 +61,11 @@ public class ZakaznikService {
             zakaznik.setJmeno(rs.getString("jmeno"));
             zakaznik.setPrijmeni(rs.getString("prijmeni"));
             zakaznik.setTelefon(rs.getString("telefon"));
+            adresa.setIdAdresa(rs.getShort("id_adresa"));
+	    
             
-            adresa.setIdAdresa(rs.getInt("id_adresa"));
         }
-        
+        adresa = AdresaService.getAdresaById(adresa.getIdAdresa());
         zakaznik.setAdresa(adresa);
         
         

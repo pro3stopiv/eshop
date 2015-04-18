@@ -6,30 +6,18 @@
 package controller.admin;
 
 import controller.Controller;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import model.Kategorie;
-import model.KategorieProdukt;
 import model.Produkt;
 import model.Vyrobce;
-import model.ZpusobDoruceni;
 import service.KategorieProduktService;
 import service.KategorieService;
 import service.ProduktService;
 import service.VyrobceService;
-import service.ZpusobDoruceniService;
 
 /**
  *

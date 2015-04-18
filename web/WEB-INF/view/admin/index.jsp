@@ -34,12 +34,15 @@
                                 </button>                                
                             </div>
                             <div class="collapse navbar-collapse" id="menu">
+			
                                 <ul class="nav navbar-nav">
                                     <li><a href="${base_url}vyrobce.do" class="active">Výrobci</a></li>
                                     <li><a href="${base_url}kategorie.do">Kategorie</a></li>
                                     <li><a href="${base_url}produkt.do">Produkty</a></li>
+				    <li><a href="${base_url}objednavka.do">Objednávky</a></li>
                                     <li><a href="${base_url}zpusob_doruceni.do">Způsoby doručení</a></li>
                                 </ul>
+			
                                 <ul class="nav navbar-nav navbar-right" id="menu-pravo">
                                     <c:choose>
                                         <c:when test="${admin_auth_state}">

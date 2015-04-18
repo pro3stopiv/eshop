@@ -16,6 +16,7 @@ import controller.StrankyController;
 import controller.VyrobceController;
 import controller.admin.AdminIndexController;
 import controller.admin.AdminKategorieController;
+import controller.admin.AdminObjednavkaController;
 import controller.admin.AdminProduktController;
 import controller.admin.AdminVyrobceController;
 import controller.admin.AdminZpusobDoruceniController;
@@ -59,7 +60,7 @@ public class DispatcherServlet extends HttpServlet {
        controllers.put("admin.kategorie", new AdminKategorieController());
        controllers.put("admin.zpusob_doruceni", new AdminZpusobDoruceniController());
        controllers.put("admin.produkt", new AdminProduktController());
-        
+       controllers.put("admin.objednavka", new AdminObjednavkaController());
         
        mapovaniURL.put("/index.do", controllers.get("index"));
        mapovaniURL.put("/kategorie.do", controllers.get("kategorie"));
@@ -76,6 +77,7 @@ public class DispatcherServlet extends HttpServlet {
        mapovaniURLAdmin.put("/admin/kategorie.do", controllers.get("admin.kategorie"));
        mapovaniURLAdmin.put("/admin/zpusob_doruceni.do", controllers.get("admin.zpusob_doruceni"));
        mapovaniURLAdmin.put("/admin/produkt.do", controllers.get("admin.produkt"));
+       mapovaniURLAdmin.put("/admin/objednavka.do", controllers.get("admin.objednavka"));
     }
     
     public DispatcherServlet() {
