@@ -11,6 +11,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Vyrobce;
+import model.VyrobceKontakt;
+import service.VyrobceKontaktService;
 import service.VyrobceService;
 
 /**
@@ -64,13 +66,23 @@ public class AdminVyrobceController implements Controller{
         vyrobce.setLongtitude(Double.parseDouble(req.getParameter("longtitude")));
         vyrobce.setLatitude(Double.parseDouble(req.getParameter("latitude")));
         
+	VyrobceKontakt kontakt = new VyrobceKontakt();
+	kontakt.setUlice(req.getParameter("ulice"));
+	kontakt.setCp(req.getParameter("cp"));
+	kontakt.setEmail(req.getParameter("email"));
+	kontakt.setMesto(req.getParameter("mesto"));
+	kontakt.setPsc(req.getParameter("psc"));
+	kontakt.setTelefon(req.getParameter("telefon"));
+	kontakt.setWww(req.getParameter("www"));
+	
         if(req.getParameter("id") != null){
             vyrobce.setIdVyrobce(Integer.parseInt(req.getParameter("id")));
+	    kontakt.setIdKontakt(VyrobceService.getVyrobceById(vyrobce.getIdVyrobce()).getKontakt().getIdKontakt());
         }
-        
-        System.out.println("pred save");
-        VyrobceService.save(vyrobce);
-        
+
+        VyrobceKontakt vk = VyrobceKontaktService.save(kontakt);
+	vyrobce.setKontakt(vk);
+	VyrobceService.save(vyrobce);
         showList(req, res);
         
     }

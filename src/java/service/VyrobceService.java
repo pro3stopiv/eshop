@@ -69,12 +69,10 @@ public class VyrobceService {
     }
     
     public static Vyrobce save(Vyrobce vyrobce) throws ClassNotFoundException, SQLException, Exception{
-        System.out.println("save netoda");
 
         
         // udpate
         if(vyrobce.getIdVyrobce() > 0){
-            System.out.println("update");
             PreparedStatement ps = db.DB.getConnection().prepareStatement("update Vyrobce set nazev = ?, popis = ?, latitude = ?, longtitude = ?, altitude = ? where id_vyrobce = ?",Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, vyrobce.getNazev());
             ps.setString(2, vyrobce.getPopis());
@@ -87,14 +85,13 @@ public class VyrobceService {
         }
         // insert
         else{
-            System.out.println("insert");
             PreparedStatement ps = db.DB.getConnection().prepareStatement("insert into Vyrobce (nazev,popis,latitude,longtitude,altitude,id_kontakt) values(?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, vyrobce.getNazev());
             ps.setString(2, vyrobce.getPopis());
             ps.setDouble(3, vyrobce.getLatitude());
             ps.setDouble(4, vyrobce.getLongtitude());
             ps.setDouble(5, vyrobce.getAltitude());
-            ps.setInt(6, 1);
+            ps.setInt(6, vyrobce.getKontakt().getIdKontakt());
             ps.execute();
             
             int id = db.DB.getLastId(ps);
