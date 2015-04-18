@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Kategorie;
+import model.KategorieProdukt;
 import model.Produkt;
 import model.Vyrobce;
 
@@ -40,7 +41,10 @@ public class ProduktService {
             Vyrobce v = VyrobceService.getVyrobceById(rs.getInt("id_vyrobce"));
             p.setVyrobce(v);
         }
-        
+	
+	List<KategorieProdukt> kategorie = new ArrayList<>();
+	kategorie = KategorieProduktService.getKategorieByProdukt(p);
+        p.setKategorie(kategorie);
         return p;
     }
     

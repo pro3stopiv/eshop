@@ -50,6 +50,7 @@ public class AdminProduktController implements Controller{
         req.setAttribute("view", "produkt");
        
 	List<Produkt> produkty = ProduktService.getAllProdukt();
+	
         req.setAttribute("produkty", produkty);
     }
     

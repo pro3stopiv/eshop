@@ -12,7 +12,7 @@
     </thead>
     <c:forEach items="${objednavka.produkty}" var="produkt">
 	<tr>
-	    <td>${produkt.produkt.nazev} (${produkt.produkt.idProdukt})</td>
+	    <td><a href="${base_url}produkt.do?action=showEdit&amp;id=${produkt.produkt.idProdukt}">${produkt.produkt.nazev} (${produkt.produkt.idProdukt})</a></td>
 	    <td>${produkt.pocetKusu}</td>
 	    <td>${produkt.cena} K&#269;</td>
 	    <td>${produkt.cena * produkt.pocetKusu} K&#269;</td>

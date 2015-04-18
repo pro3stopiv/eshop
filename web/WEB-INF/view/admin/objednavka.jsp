@@ -22,7 +22,7 @@
 	    ${objednavka.stavObjednavky}
 	</td>
 	<td>${objednavka.datum}</td>
-	<td>${objednavka.zakaznik.jmeno} ${objednavka.zakaznik.prijmeni}</td>
+	<td><a href="${base_url}zakaznik.do?action=showEdit&amp;id=${objednavka.zakaznik.idZakaznik}">${objednavka.zakaznik.jmeno} ${objednavka.zakaznik.prijmeni}</a></td>
 	<td>${objednavka.celkovaCena} K&#269;</td>
     </tr>
 </c:forEach>

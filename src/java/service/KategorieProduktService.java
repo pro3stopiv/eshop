@@ -49,7 +49,19 @@ public class KategorieProduktService {
         ps.execute();
     }
     
-    
+    public static List<KategorieProdukt> getKategorieByProdukt(Produkt p) throws ClassNotFoundException, SQLException {
+	List<KategorieProdukt> kategorie = new ArrayList<>();
+	PreparedStatement ps = db.DB.getConnection().prepareStatement("select id_kategorie from KategorieProdukt where id_produkt = ?");
+	ps.setInt(1, p.getIdProdukt());
+	ResultSet rs = ps.executeQuery();
+	while(rs.next()) {
+	    Kategorie k = KategorieService.getKategorieById(rs.getInt("id_kategorie"));
+	    KategorieProdukt kp = new KategorieProdukt(k, p);
+	    
+	    kategorie.add(kp);
+	}
+	return kategorie;	
+    }
     
     
 }

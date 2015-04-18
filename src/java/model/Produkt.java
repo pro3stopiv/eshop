@@ -26,6 +26,7 @@ public class Produkt {
     private double obsahAlkoholu;
     private String nazevObrazku;
     private Vyrobce vyrobce;
+    private List<KategorieProdukt> kategorie;
 
     public Produkt() {
     }
@@ -110,5 +111,14 @@ public class Produkt {
 	return false;
 	
     }
+
+    public void setKategorie(List<KategorieProdukt> kategorie) {
+	this.kategorie = kategorie;
+    }
+
+    public List<KategorieProdukt> getKategorie() {
+	return kategorie;
+    }
+    
        
 }
