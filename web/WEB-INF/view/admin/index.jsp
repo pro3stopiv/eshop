@@ -41,6 +41,8 @@
                                     <li><a href="${base_url}produkt.do">Produkty</a></li>
 				    <li><a href="${base_url}objednavka.do">Objednávky</a></li>
                                     <li><a href="${base_url}zpusob_doruceni.do">Způsoby doručení</a></li>
+				    <li><a href="${base_url}zakaznik.do">Zákazníci</a></li>
+				    
                                 </ul>
 			
                                 <ul class="nav navbar-nav navbar-right" id="menu-pravo">
@@ -52,7 +54,7 @@
                                             </form>
                                         </c:when>
                                         <c:otherwise>  
-                                            <form method="post" class="form-inline" id="login">                                    
+                                            <form method="post" class="form-inline" id="login" action="index.do">                                    
                                                 <input type="text" class="form-control" name="login" placeholder="Login" required autofocus>
                                                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Heslo" required>
                                                 <input type="submit" class="btn btn-md btn-primary" value="Přihlásit"/>

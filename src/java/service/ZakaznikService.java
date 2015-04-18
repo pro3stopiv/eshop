@@ -11,12 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import model.Adresa;
-import model.Produkt;
-import model.Vyrobce;
-import model.VyrobceKontakt;
 import model.Zakaznik;
 
 /**
@@ -76,7 +75,21 @@ public class ZakaznikService {
         
     
     public static Zakaznik save(Zakaznik zakaznik) throws ClassNotFoundException, SQLException, Exception{
-
+	if(zakaznik.getIdZakaznik() > 0) {
+	    // update
+	    PreparedStatement ps = db.DB.getConnection().prepareStatement("update Zakaznik set jmeno = ?, prijmeni = ?, email = ?, telefon = ?, id_adresa = ? where id_zakaznik = ?",Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, zakaznik.getJmeno());
+            ps.setString(2, zakaznik.getPrijmeni());
+            ps.setString(3, zakaznik.getEmail());
+            ps.setString(4, zakaznik.getTelefon());
+            ps.setInt(5, zakaznik.getAdresa().getIdAdresa());
+            ps.setInt(6, zakaznik.getIdZakaznik());
+            ps.execute();
+            return zakaznik;
+	     
+	}
+	else {
+	    // insert
             PreparedStatement ps = db.DB.getConnection().prepareStatement("insert into Zakaznik (jmeno,prijmeni,email,heslo,telefon,id_adresa) values(?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, zakaznik.getJmeno());
             ps.setString(2, zakaznik.getPrijmeni());
@@ -92,5 +105,26 @@ public class ZakaznikService {
             zakaznik = ZakaznikService.getZakaznikById(id);
             
             return zakaznik;
+	}
+    }
+    
+    public static List<Zakaznik> getAllZakaznici() throws ClassNotFoundException, SQLException {
+	List<Zakaznik> zakaznici = new ArrayList<>();
+	
+	PreparedStatement ps = db.DB.getConnection().prepareStatement("select id_zakaznik from Zakaznik");
+	ResultSet rs = ps.executeQuery();
+	
+	while (rs.next()) {
+            Zakaznik z = ZakaznikService.getZakaznikById(Integer.parseInt(rs.getString("id_zakaznik")));
+            zakaznici.add(z);
+        }
+	
+	return zakaznici;
+    }
+    
+    public static void delete(Zakaznik zakaznik) throws ClassNotFoundException, SQLException{
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("delete from Zakaznik where id_zakaznik = ?");
+        ps.setInt(1, zakaznik.getIdZakaznik());
+        ps.execute();
     }
 }

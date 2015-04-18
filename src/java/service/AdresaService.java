@@ -19,23 +19,41 @@ import model.Vyrobce;
  */
 public class AdresaService {
      public static Adresa save(Adresa adresa) throws ClassNotFoundException, SQLException, Exception{
+	 if (adresa.getIdAdresa() > 0) {
+	     // update
+	    PreparedStatement ps = db.DB.getConnection().prepareStatement("update Adresa set fakturacni_ulice = ?, fakturacni_CP = ?, fakturacni_PSC = ?, fakturacni_Mesto = ?, dorucovaci_ulice = ?, dorucovaci_CP = ?, dorucovaci_mesto = ?, dorucovaci_PSC = ? where id_adresa = ?",Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, adresa.getFakturacniUlice());
+            ps.setString(2, adresa.getFakturacniCP());
+            ps.setString(3, adresa.getFakturacniPSC());
+            ps.setString(4, adresa.getFakturacniMesto());
+            ps.setString(5, adresa.getDorucovaciUlice());
+            ps.setString(6, adresa.getDorucovaciCP());
+	    ps.setString(7, adresa.getDorucovaciMesto());
+	    ps.setString(8, adresa.getDorucovaciPSC());
+	    ps.setInt(9, adresa.getIdAdresa());
+            ps.execute();
+            return adresa;
+	     
+	 } else {
+	    // insert
 
-        PreparedStatement ps = db.DB.getConnection().prepareStatement("insert into Adresa (fakturacni_ulice,fakturacni_cp,fakturacni_psc,fakturacni_mesto, dorucovaci_ulice, dorucovaci_cp, dorucovaci_mesto, dorucovaci_psc) values(?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
-        ps.setString(1, adresa.getFakturacniUlice());
-        ps.setString(2, adresa.getFakturacniCP());
-        ps.setString(3, adresa.getFakturacniPSC());
-        ps.setString(4, adresa.getFakturacniMesto());
-        ps.setString(5, adresa.getDorucovaciUlice());
-        ps.setString(6, adresa.getDorucovaciCP());
-        ps.setString(7, adresa.getDorucovaciMesto());
-        ps.setString(8, adresa.getDorucovaciPSC());
-        ps.execute();
+	     PreparedStatement ps = db.DB.getConnection().prepareStatement("insert into Adresa (fakturacni_ulice,fakturacni_cp,fakturacni_psc,fakturacni_mesto, dorucovaci_ulice, dorucovaci_cp, dorucovaci_mesto, dorucovaci_psc) values(?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+	     ps.setString(1, adresa.getFakturacniUlice());
+	     ps.setString(2, adresa.getFakturacniCP());
+	     ps.setString(3, adresa.getFakturacniPSC());
+	     ps.setString(4, adresa.getFakturacniMesto());
+	     ps.setString(5, adresa.getDorucovaciUlice());
+	     ps.setString(6, adresa.getDorucovaciCP());
+	     ps.setString(7, adresa.getDorucovaciMesto());
+	     ps.setString(8, adresa.getDorucovaciPSC());
+	     ps.execute();
 
-        int id = db.DB.getLastId(ps);
+	     int id = db.DB.getLastId(ps);
 
-        adresa = getAdresaById(id);
+	     adresa = getAdresaById(id);
 
-        return adresa;
+	     return adresa;
+	 }
     }
      
     public static Adresa getAdresaById(int id_adresa) throws SQLException, ClassNotFoundException{

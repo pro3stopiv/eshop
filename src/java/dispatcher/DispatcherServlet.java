@@ -6,7 +6,6 @@
 
 package dispatcher;
 
-import db.DB;
 import controller.Controller;
 import controller.IndexController;
 import controller.KategorieController;
@@ -19,13 +18,13 @@ import controller.admin.AdminKategorieController;
 import controller.admin.AdminObjednavkaController;
 import controller.admin.AdminProduktController;
 import controller.admin.AdminVyrobceController;
+import controller.admin.AdminZakaznikController;
 import controller.admin.AdminZpusobDoruceniController;
 import exceptions.ExceptionLogin;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,6 +60,7 @@ public class DispatcherServlet extends HttpServlet {
        controllers.put("admin.zpusob_doruceni", new AdminZpusobDoruceniController());
        controllers.put("admin.produkt", new AdminProduktController());
        controllers.put("admin.objednavka", new AdminObjednavkaController());
+       controllers.put("admin.zakaznik", new AdminZakaznikController());
         
        mapovaniURL.put("/index.do", controllers.get("index"));
        mapovaniURL.put("/kategorie.do", controllers.get("kategorie"));
@@ -78,6 +78,7 @@ public class DispatcherServlet extends HttpServlet {
        mapovaniURLAdmin.put("/admin/zpusob_doruceni.do", controllers.get("admin.zpusob_doruceni"));
        mapovaniURLAdmin.put("/admin/produkt.do", controllers.get("admin.produkt"));
        mapovaniURLAdmin.put("/admin/objednavka.do", controllers.get("admin.objednavka"));
+       mapovaniURLAdmin.put("/admin/zakaznik.do", controllers.get("admin.zakaznik"));
     }
     
     public DispatcherServlet() {

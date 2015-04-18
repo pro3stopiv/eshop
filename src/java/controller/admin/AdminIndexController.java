@@ -18,7 +18,6 @@ public class AdminIndexController implements Controller {
 
     @Override
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
-        req.setAttribute("title", "Osoba");
         req.setAttribute("view","uvod");
     }
     

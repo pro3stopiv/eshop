@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<a href="${base_url}objednavka.do?action=showEdit" class="btn btn-primary">Nová objednávka</a>
+
 <table class="table table-hover">
     <thead>
 	<th>ID objednávky</th>
@@ -24,7 +24,6 @@
 	<td>${objednavka.datum}</td>
 	<td>${objednavka.zakaznik.jmeno} ${objednavka.zakaznik.prijmeni}</td>
 	<td>${objednavka.celkovaCena} K&#269;</td>
-        <td><a href="${base_url}objednavka.do?action=delete&amp;id=${objednavka.idObjednavka}" class="btn btn-danger">Smazat</a></td>
     </tr>
 </c:forEach>
 </table>
