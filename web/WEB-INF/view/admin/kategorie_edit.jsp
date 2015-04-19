@@ -11,7 +11,7 @@
 
             <div class="row-centered">
             <c:if test="${kategorie != null}">
-                <input type="hidden" name="id" value="${kategorie.idKategorie}" />
+                <input type="hidden" name="id" value="${kategorie.idKategorie}"  />
             </c:if>
             <input type="hidden" name="action" value="edit" />
             <br /><input type="submit" class="btn btn-lg bg-primary" />

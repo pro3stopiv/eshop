@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
 <div class="container">
     <form method="post" action="${base_url}zpusob_doruceni.do" class="form-signin well">
         <h2 class="form-signin-heading">Způsob doručení</h2>

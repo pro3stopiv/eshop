@@ -33,8 +33,8 @@
             <input type="checkbox" name="kategorie[${kategor.idKategorie}]" <c:if test="${produkt.hasKategorie(kategor)}">checked="checked"</c:if> />${kategor.nazev}
         </c:forEach>
 
-        <br>
-        <br>            
+        <br />
+        <br />            
         <div class="row-centered">
             <c:if test="${produkt != null}">
                 <input type="hidden" name="id" value="${produkt.idProdukt}" />

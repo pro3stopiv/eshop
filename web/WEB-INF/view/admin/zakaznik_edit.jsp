@@ -6,7 +6,7 @@
         <div class="form-signin ">
             <div class="row">
 
-                <h2 class="form-signin-heading">Údaje o zákazníkovi</h2>
+                <h2 class="form-signin-heading">Údaje zákazníka</h2>
 
                 <label for="jmeno" class="col-sm-8 control-label">Jméno</label>
                 <input class="form-control" name="jmeno" <c:if test="${zakaznik != null}">value="${zakaznik.jmeno}"</c:if> />
