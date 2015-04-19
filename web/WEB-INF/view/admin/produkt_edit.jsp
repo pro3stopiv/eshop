@@ -1,63 +1,46 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form method="post" action="${base_url}produkt.do">
-    <table>
-        <tr>
-            <td>Název</td>
-            <td><input name="nazev" <c:if test="${produkt != null}">value="${produkt.nazev}"</c:if> /></td>
-        </tr>
-	<tr>
-            <td>Cena</td>
-            <td><input name="cena" <c:if test="${produkt != null}">value="${produkt.cena}"</c:if> /></td>
-        </tr>
-        <tr>
-            <td>Popis</td>
-            <td>
-                <textarea name="popis"><c:if test="${produkt != null}">${produkt.popis}</c:if></textarea>
-            </td>
-        </tr>
-	<tr>
-            <td>Doba dodání</td>
-            <td><input name="doba_dodani" <c:if test="${produkt != null}">value="${produkt.dobaDodani}"</c:if> /></td>
-        </tr>
-	<tr>
-            <td>Obsah alkoholu</td>
-            <td><input name="obsah_alkoholu" <c:if test="${produkt != null}">value="${produkt.obsahAlkoholu}"</c:if> /></td>
-        </tr>
-	<tr>
-            <td>Obrázek</td>
-            <td>
-		<c:if test="${produkt != null}">
-		    <img src="${produkt.nazevObrazku}" alt="obrazek" style="width: 50px;" />
-		</c:if>
-		<input name="obrazek" <c:if test="${produkt != null}">value="${produkt.nazevObrazku}"</c:if>  />
-	    </td>
-        </tr>
-	<tr>
-            <td>Výrobce</td>
-            <td>
-		<select name="vyrobce">
-		<c:forEach items="${vyrobci}" var="vyrobce">
-		    <option value="${vyrobce.idVyrobce}"<c:if test="${vyrobce.idVyrobce == produkt.vyrobce.idVyrobce}"> selected="selected"</c:if>>${vyrobce.nazev}</option>
-		</c:forEach>
-		</select>
-	    </td>
-        </tr>
-	<tr>
-            <td>Kategorie</td>
-            <td>
-		<c:forEach items="${kategorie}" var="kategor">
-		    <input type="checkbox" name="kategorie[${kategor.idKategorie}]" <c:if test="${produkt.hasKategorie(kategor)}">checked="checked"</c:if> />${kategor.nazev}
-		</c:forEach>
-	    </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <c:if test="${produkt != null}">
-                    <input type="hidden" name="id" value="${produkt.idProdukt}" />
-                </c:if>
-                <input type="hidden" name="action" value="edit" />
-                <input type="submit" />
-            </td>
-        </tr>
-    </table>
-</form>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<div class="container">
+    <form method="post" action="${base_url}produkt.do" class="form-signin well">
+
+        <h2 class="form-signin-heading">Produkt</h2>
+        <label for="nazev" class="col-sm-8 control-label">NÃ¡zev</label>
+        <input name="nazev" class="form-control"<c:if test="${produkt != null}">value="${produkt.nazev}"</c:if> />
+            <label for="cena" class="col-sm-8 control-label">Cena</label>
+            <input name="cena" class="form-control"<c:if test="${produkt != null}">value="${produkt.cena}"</c:if> />
+            <label for="popis" class="col-sm-8 control-label">Popis</label>
+            <textarea name="popis" class="form-control"><c:if test="${produkt != null}">${produkt.popis}</c:if></textarea>
+            <label for="doba_dodani" class="col-sm-8 control-label">Doba dodÃ¡nÃ­</label>
+            <input name="doba_dodani" class="form-control"<c:if test="${produkt != null}">value="${produkt.dobaDodani}"</c:if> />
+            <label for="obsah_alkoholu" class="col-sm-8 control-label">Obsah alkoholu</label>
+            <input name="obsah_alkoholu" class="form-control"<c:if test="${produkt != null}">value="${produkt.obsahAlkoholu}"</c:if> />
+
+        <c:if test="${produkt != null}">
+            <img class="form-control" src="${produkt.nazevObrazku}" alt="obrazek" style="width: 50px; text-align: center;"  />
+        </c:if>
+        <label for="obrazek" class="col-sm-8 control-label">NÃ¡zev obrÃ¡zku</label>
+        <input name="obrazek" class="form-control"<c:if test="${produkt != null}">value="${produkt.nazevObrazku}"</c:if>  />
+
+            <label for="vyrobce" class="col-sm-8 control-label">VÃ½robce</label>
+            <select name="vyrobce" class="form-control">
+            <c:forEach items="${vyrobci}" var="vyrobce">
+                <option value="${vyrobce.idVyrobce}" <c:if test="${vyrobce.idVyrobce == produkt.vyrobce.idVyrobce}"> selected="selected"</c:if>>${vyrobce.nazev}</option>
+            </c:forEach>
+        </select>
+        <br>
+        <c:forEach items="${kategorie}" var="kategor">
+            <input type="checkbox" name="kategorie[${kategor.idKategorie}]" <c:if test="${produkt.hasKategorie(kategor)}">checked="checked"</c:if> />${kategor.nazev}
+        </c:forEach>
+
+        <br>
+        <br>            
+        <div class="row-centered">
+            <c:if test="${produkt != null}">
+                <input type="hidden" name="id" value="${produkt.idProdukt}" />
+            </c:if>
+            <input type="hidden" name="action" value="edit" />
+            <input type="submit" class="btn bg-primary btn-lg" />
+        </div>
+    </form>
+</div>

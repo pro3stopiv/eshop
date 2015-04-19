@@ -57,9 +57,16 @@ div.paticka {
 #btn-order {
     width: 200px;
 }
-#form-registrace input {
-    margin: 10px;
+#form-norm input, #form-norm textArea {
+    margin-bottom: 10px;
 }
+
+.form-norm  {
+    max-width: 600px;  
+    margin: 0 auto;
+}
+
+
 .fakturacni-adr {
     display: block;
 }
@@ -67,4 +74,25 @@ div.paticka {
 #map {
     width: 480px;
     height: 240px;
+}
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    text-align:left;
+    margin-right:-4px;
+}
+.txt-center {
+    margin: 0 auto;
+    text-align: center;
+}
+div.row.adresy {
+    max-width: 600px;
+    margin: 0 auto;
+}
+div.zakaznik {
+    max-width: 600px;
+    margin: 0 auto;
 }

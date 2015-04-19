@@ -1,98 +1,130 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form method="post" action="${base_url}objednavka.do">
-<h2>Obsah objedn·vky</h2>
-<table>
-    <thead>
-	<tr>
-	<th>N·zev zbo&#158;Ì(KÛd zbo&#158;Ì)</th>
-	<th>Po&#269;et kus&#367;</th>
-	<th>Cena za kus</th>
-	<th>Cena za v&#154;echny</th>
-	</tr>
-    </thead>
-    <c:forEach items="${objednavka.produkty}" var="produkt">
-	<tr>
-	    <td><a href="${base_url}produkt.do?action=showEdit&amp;id=${produkt.produkt.idProdukt}">${produkt.produkt.nazev} (${produkt.produkt.idProdukt})</a></td>
-	    <td>${produkt.pocetKusu}</td>
-	    <td>${produkt.cena} K&#269;</td>
-	    <td>${produkt.cena * produkt.pocetKusu} K&#269;</td>
-	</tr>
-    </c:forEach>
-	<tr>
-	    <td colspan="3"><b>Doprava:</b> ${objednavka.zpusobDoruceni.nazevZpusobu}</td>
-	     <td>${objednavka.cenaDoruceni} K&#269;</td>
-	</tr>
-	<tr>
-	    <td colspan="3"><b>Cena celkem:</b></td>
-	    <td>${objednavka.celkovaCena} K&#269;</td>
-	</tr>
-</table>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<h2>Informace o z·kaznÌkovi</h2>
-<table>
-    <tr>
-	<td>ID</td>
-	<td>${objednavka.zakaznik.idZakaznik}</td>
-    </tr>
-    <tr>
-	<td>JmÈno</td>
-	<td>${objednavka.zakaznik.jmeno}</td>
-    </tr>
-    <tr>
-	<td>P&#345;ÌjmenÌ</td>
-	<td>${objednavka.zakaznik.prijmeni}</td>
-    </tr>
-    <tr>
-	<td>E-mail</td>
-	<td>${objednavka.zakaznik.email}</td>
-    </tr>
-    <tr>
-	<td>Telefon</td>
-	<td>${objednavka.zakaznik.telefon}</td>
-    </tr>
-</table>
+<div class="container-fluid">
+    <form method="post" action="${base_url}objednavka.do" class="well">
+        <div class="row">
+            <h2 style="text-align: center;">Obsah objedn√°vky</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>N√°zev zbo≈æ√≠</th>
+                        <th>Poƒçet kus≈Ø</th>
+                        <th>Cena za kus</th>
+                        <th>Cena za v≈°echny</th>
+                    </tr>
+                </thead>
+                <c:forEach items="${objednavka.produkty}" var="produkt">
+                    <tr>
+                        <td><a href="${base_url}produkt.do?action=showEdit&amp;id=${produkt.produkt.idProdukt}">${produkt.produkt.nazev} (${produkt.produkt.idProdukt})</a></td>
+                        <td>${produkt.pocetKusu}</td>
+                        <td>${produkt.cena} K&#269;</td>
+                        <td>${produkt.cena * produkt.pocetKusu} K&#269;</td>
+                    </tr>
+                </c:forEach>
+                <tr>
+                    <td colspan="3"><b>Doprava:</b> ${objednavka.zpusobDoruceni.nazevZpusobu}</td>
+                    <td>${objednavka.cenaDoruceni} K&#269;</td>
+                </tr>
+                <tr>               
+                    <td colspan="3"><b>Cena celkem:</b></td>
+                    <td>${objednavka.celkovaCena} K&#269;</td>
+                </tr>
+            </table>
+        </div>
 
-<h2>Adresa</h2>
-<table>
-    <tr>
-	<td>Doru&#269;ovacÌ</td>
-	<td>
-	    ${objednavka.zakaznik.adresa.dorucovaciUlice} ${objednavka.zakaznik.adresa.dorucovaciCP}<br />
-	    ${objednavka.zakaznik.adresa.dorucovaciPSC} ${objednavka.zakaznik.adresa.dorucovaciMesto}
-	</td>
-    </tr>
-    <tr>
-	<td>Faktura&#269;nÌ</td>
-	<td>
-	    ${objednavka.zakaznik.adresa.fakturacniUlice} ${objednavka.zakaznik.adresa.fakturacniCP}<br />
-	    ${objednavka.zakaznik.adresa.fakturacniPSC} ${objednavka.zakaznik.adresa.fakturacniMesto}
-	</td>
-    </tr>
-</table>
-<h2>Informace o objedn·vce</h2>
-<table>
-    <tr>
-	<td>Datum objedn·vky:</td>
-	<td>${objednavka.datum}</td>
-    </tr>
-    <tr>
-	<td>Stav</td>
-	<td>
-	    <select name="stav">
-		<c:forEach begin="0" end="${objednavka.pocetStavuObjednavky-1}" var="i">
-		    <option value="${i+1}" <c:if test="${objednavka.stav == i+1}"> selected="selected"</c:if>>${objednavka.stavyObjednavky[i]}</option>
-		</c:forEach>
-	    </select>
-	</td>
-    </tr>
-    <tr>
-	<td>Celkov· cena</td>
-	<td>${objednavka.celkovaCena} K&#269;</td>
-    </tr>
-</table>
-<c:if test="${objednavka != null}">
-    <input type="hidden" name="id" value="${objednavka.idObjednavka}" />
-</c:if>
-<input type="hidden" name="action" value="edit" />
-<input type="submit" />
-</form>
+        <hr style="width: 100%; height: 1px; background-color: gray;" />
+
+        <div class="row">
+            <h2 style="text-align: center;">Informace o z√°kazn√≠kovi</h2>                    
+            <table class="table">      
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Jm√©no</th>
+                        <th>P&#345;√≠jmen√≠</th>
+                        <th>E-mail</th>
+                        <th>Telefon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${objednavka.zakaznik.idZakaznik}</td>
+                        <td>${objednavka.zakaznik.jmeno}</td>
+                        <td>${objednavka.zakaznik.prijmeni}</td>                    
+                        <td>${objednavka.zakaznik.email}</td>
+                        <td>${objednavka.zakaznik.telefon}</td>
+                    </tr>
+                </tbody>
+            </table>            
+        </div>
+
+        <hr style="width: 100%; height: 1px; background-color: gray;" />
+
+        <div class="row adresy">
+            <h2 style="text-align: center;">Adresa</h2>                    
+            <div class="col-md-6">              
+                <table class="pull-left">
+                    <caption>Doruƒçovac√≠</caption>
+                    <tr>    
+                        <td>
+                            ${objednavka.zakaznik.adresa.dorucovaciUlice} ${objednavka.zakaznik.adresa.dorucovaciCP}<br />
+                            ${objednavka.zakaznik.adresa.dorucovaciPSC} ${objednavka.zakaznik.adresa.dorucovaciMesto}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="pull-right">
+                    <caption>Fakturaƒçn√≠</caption>
+                    <tr>    
+                        <td>
+                            ${objednavka.zakaznik.adresa.fakturacniUlice} ${objednavka.zakaznik.adresa.fakturacniCP}<br />
+                            ${objednavka.zakaznik.adresa.fakturacniPSC} ${objednavka.zakaznik.adresa.fakturacniMesto}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr style="width: 100%; height: 1px; background-color: gray;" />
+
+        <div class="row adresy">
+            <h2 style="text-align: center;">Informace o objedn√°vce</h2>
+            <div class="col-md-offset-3">
+                <div class="col-md-6">
+                    <table class="table">
+                        <tr>
+                            <td>Datum objedn√°vky:</td>
+                            <td>${objednavka.datum}</td>
+                        </tr>
+                        <tr>
+                            <td>Stav</td>
+                            <td>
+                                <select name="stav">
+                                    <c:forEach begin="0" end="${objednavka.pocetStavuObjednavky-1}" var="i">
+                                        <option value="${i+1}" <c:if test="${objednavka.stav == i+1}"> selected="selected"</c:if>>${objednavka.stavyObjednavky[i]}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Celkov√° cena</td>
+                            <td>${objednavka.celkovaCena} K&#269;</td>
+                        </tr>                
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <hr style="width: 100%; height: 1px; background-color: gray;" />
+
+        <div class="row-centered">
+            <c:if test="${objednavka != null}">
+                <input type="hidden" name="id" value="${objednavka.idObjednavka}" />
+            </c:if>
+            <input type="hidden" name="action" value="edit" />
+            <input type="submit" class="btn bg-primary btn-lg" />
+        </div>
+    </form>
+</div>

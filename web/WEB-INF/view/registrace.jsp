@@ -3,7 +3,7 @@
 
 
 
-<form class="form-horizontal" id="form-registrace">
+<form class="form-horizontal" id="form-norm">
     <h2 class="form-signin-heading">Registrace</h2>
     <div class="row">
         <div class="col-sm-4">        

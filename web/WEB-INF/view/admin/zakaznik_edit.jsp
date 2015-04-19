@@ -1,79 +1,69 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form method="post" action="${base_url}zakaznik.do">
-    <table>
-	<caption>⁄daje o z·kaznÌkovi</caption>
-        <tr>
-            <td>JmÈno</td>
-            <td><input name="jmeno" <c:if test="${zakaznik != null}">value="${zakaznik.jmeno}"</c:if> /></td>
-        </tr>
-        <tr>
-            <td>P&#345;ÌjmenÌ</td>
-            <td>
-                <input name="prijmeni" <c:if test="${zakaznik != null}">value="${zakaznik.prijmeni}"</c:if> />
-            </td>
-        </tr>
-	<tr>
-	    <td>E-mail</td>
-	    <td><input name="email" type="email" <c:if test="${zakaznik != null}">value="${zakaznik.email}"</c:if> /></td>
-	</tr>
-	<tr>
-	    <td>Telefon</td>
-	    <td><input name="telefon" <c:if test="${zakaznik != null}">value="${zakaznik.telefon}"</c:if> /></td>
-	</tr>
-    </table>
-    <table>
-	<caption>Adresy</caption>
-	<tr>
-	    <td colspan="2"><b>Doru&#269;ovacÌ</b></td>
-	</tr>
-	<tr>
-	    <td>Ulice</td>
-	    <td>
-		<input name="dorucovaciUlice" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciUlice}"</c:if> />
-	    </td>
-	</tr>
-	<tr>
-	    <td>&#268;Ìslo popisnÈ</td>
-	    <td><input name="dorucovaciCP" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciCP}"</c:if> /></td>
-	</tr>
-	<tr>
-	    <td>M&#283;sto</td>
-	    <td><input name="dorucovaciMesto" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciMesto}"</c:if> /></td>
-	</tr>
-	<tr>
-	    <td>PS&#268;</td>
-	    <td><input name="dorucovaciPSC" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciPSC}"</c:if> /></td>
-	</tr>
-	
-	
-	<tr>
-	    <td colspan="2"><b>Faktura&#269;nÌ</b></td>
-	</tr>
-	<tr>
-	    <td>Ulice</td>
-	    <td>
-		<input name="fakturacniUlice" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.fakturacniUlice}"</c:if> />
-	    </td>
-	</tr>
-	<tr>
-	    <td>&#268;Ìslo popisnÈ</td>
-	    <td><input name="fakturacniCP" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.fakturacniCP}"</c:if> /></td>
-	</tr>
-	<tr>
-	    <td>M&#283;sto</td>
-	    <td><input name="fakturacniMesto" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.fakturacniMesto}"</c:if> /></td>
-	</tr>
-	<tr>
-	    <td>PS&#268;</td>
-	    <td><input name="fakturacniPSC" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.fakturacniPSC}"</c:if> /></td>
-	</tr>
-	
-    </table>
-       
-                <c:if test="${zakaznik != null}">
-                    <input type="hidden" name="id" value="${zakaznik.idZakaznik}" />
-                </c:if>
-                <input type="hidden" name="action" value="edit" />
-                <input type="submit" />
-            
-</form>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<div class="container-fluid zakaznik ">
+    <form method="post" action="${base_url}zakaznik.do" class="well">
+        <div class="form-signin ">
+            <div class="row">
+
+                <h2 class="form-signin-heading">√ödaje o z√°kazn√≠kovi</h2>
+
+                <label for="jmeno" class="col-sm-8 control-label">Jm√©no</label>
+                <input class="form-control" name="jmeno" <c:if test="${zakaznik != null}">value="${zakaznik.jmeno}"</c:if> />
+
+                    <label for="prijmeni" class="col-sm-8 control-label">P≈ô√≠jmen√≠</label>
+                    <input class="form-control" name="prijmeni" <c:if test="${zakaznik != null}">value="${zakaznik.prijmeni}"</c:if> />
+
+                    <label for="email" class="col-sm-8 control-label">Email</label>
+                    <input class="form-control" name="email" type="email" <c:if test="${zakaznik != null}">value="${zakaznik.email}"</c:if> />
+
+                    <label for="telefon" class="col-sm-8 control-label">Telefon</label>
+                    <input class="form-control" name="telefon" <c:if test="${zakaznik != null}">value="${zakaznik.telefon}"</c:if> />
+
+                </div>
+            </div>
+            <h2 class="row-centered">Adresy</h2><br />
+            <div class="row zakaznik ">
+                <div class="col-md-6">
+                    <h4 class="form-signin-heading">Doruƒçovac√≠</h4>
+                    <label for="dorucovaciUlice" class="col-sm-8 control-label">Ulice</label>
+                    <input class="form-control" name="dorucovaciUlice" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciUlice}"</c:if> />
+
+                    <label for="dorucovaciCP" class="col-sm-8 control-label">ƒå√≠slo popisn√©</label>
+                    <input class="form-control" name="dorucovaciCP" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciCP}"</c:if> />
+
+                    <label for="dorucovaciMesto" class="col-sm-8 control-label">Mƒõsto</label>
+                    <input class="form-control" name="dorucovaciMesto" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciMesto}"</c:if> />
+
+                    <label for="dorucovaciPSC" class="col-sm-8 control-label">PSƒå</label>
+                    <input class="form-control" name="dorucovaciPSC" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciPSC}"</c:if> />
+                </div>
+                <div class="col-md-6">
+                    <h4 class="form-signin-heading">Fakturaƒçn√≠</h4>
+                    <label for="fakturacniUlice" class="col-sm-8 control-label">Ulice</label>
+                    <input class="form-control" name="fakturacniUlice" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.fakturacniUlice}"</c:if> />
+
+                    <label for="fakturacniCP" class="col-sm-8 control-label">ƒå√≠slo popisn√©</label>
+                    <input class="form-control" name="fakturacniCP" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.fakturacniCP}"</c:if> />
+
+                    <label for="fakturacniMesto" class="col-sm-8 control-label">Mƒõsto</label>
+                    <input class="form-control" name="fakturacniMesto" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.fakturacniMesto}"</c:if> />
+
+                    <label for="fakturacniPSC" class="col-sm-8 control-label">PSƒå</label>
+                    <input class="form-control" name="fakturacniPSC" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.fakturacniPSC}"</c:if> />
+                </div>
+            </div>
+
+            <div class="row-centered">
+                <br />
+            <c:if test="${zakaznik != null}">
+                <input type="hidden" name="id" value="${zakaznik.idZakaznik}" />
+            </c:if>
+            <input type="hidden" name="action" value="edit" />
+            <input type="submit" class="btn bg-primary btn-lg" />
+            <br />
+        </div>
+
+    </form>
+    <br />
+</div>
