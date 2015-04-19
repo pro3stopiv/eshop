@@ -15,6 +15,7 @@
         <link type="text/css" rel="stylesheet" href="<c:url value="/css/bootstrap.css" />" />
         <link type="text/css" rel="stylesheet" href="<c:url value="/css/layout.css" />" />
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>	
+        <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
         <title>${title} | Stopiv</title>
     </head>
     <body>
