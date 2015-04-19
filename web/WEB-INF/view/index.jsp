@@ -51,7 +51,7 @@
                                         </c:when>
                                         <c:otherwise>  
                                             <form method="post" class="form-inline" id="login">                                    
-                                                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required autofocus>
+                                                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required>
                                                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Heslo" required>
                                                 <input type="submit" class="btn btn-md btn-primary" value="Přihlásit"/>
                                                 <a href="${base_url}registrace.do">Registrovat</a>
