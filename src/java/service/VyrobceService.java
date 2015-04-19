@@ -11,8 +11,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.Kategorie;
+import model.KategorieProdukt;
+import model.Produkt;
 import model.Vyrobce;
 import model.VyrobceKontakt;
+import static service.KategorieService.getKategorieById;
 
 /**
  *
@@ -107,5 +111,21 @@ public class VyrobceService {
         PreparedStatement ps = db.DB.getConnection().prepareStatement("delete from Vyrobce where id_vyrobce = ?");
         ps.setInt(1, vyrobce.getIdVyrobce());
         ps.execute();
+    }
+    
+    public static List<Produkt> getProdukty(int id_vyrobce) throws SQLException, ClassNotFoundException{
+        
+        List<Produkt> produkty = new ArrayList<>();
+        
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from Produkt where id_vyrobce = ?");
+        ps.setInt(1, id_vyrobce);
+        ResultSet rs = ps.executeQuery();
+        
+        while (rs.next()) {
+            Produkt p = ProduktService.getProduktById(rs.getInt("id_produkt"));
+            produkty.add(p);
+        }
+        
+        return produkty;
     }
 }

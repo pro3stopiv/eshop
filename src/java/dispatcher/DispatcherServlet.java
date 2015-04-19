@@ -66,6 +66,7 @@ public class DispatcherServlet extends HttpServlet {
        mapovaniURL.put("/kategorie.do", controllers.get("kategorie"));
        mapovaniURL.put("/produkt.do", controllers.get("produkt"));
        mapovaniURL.put("/vyrobce.do", controllers.get("vyrobce"));
+       mapovaniURL.put("/vyrobceVypis.do", controllers.get("vyrobce"));
        mapovaniURL.put("/kontakt.do", controllers.get("stranky"));
        mapovaniURL.put("/obchodni-podminky.do", controllers.get("stranky"));
        mapovaniURL.put("/o-nas.do", controllers.get("stranky"));
