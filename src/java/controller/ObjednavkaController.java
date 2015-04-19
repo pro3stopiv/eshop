@@ -9,10 +9,15 @@ package controller;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Adresa;
 import model.Objednavka;
+import model.ObjednavkaProdukt;
 import model.Produkt;
 import model.Zakaznik;
 import model.ZpusobDoruceni;
@@ -34,13 +39,17 @@ public class ObjednavkaController implements Controller{
             switch (req.getParameter("action")) {
                 case "removeItem":
                     removeItem(req, res);
+                    showCart(req, res);
                     break;
                 case "order":
                     order(req, res);
                     break;
+                default:
+                    showCart(req, res);
                }
+        }else{
+            showCart(req, res);
         }
-        showCart(req, res);
     }
     
     private void showCart(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException{
@@ -72,7 +81,7 @@ public class ObjednavkaController implements Controller{
             adresa.setDorucovaciMesto(req.getParameter("dorucovaci_mesto"));
             adresa.setDorucovaciPSC(req.getParameter("dorucovaci_psc"));
             
-            if(req.getParameter("stejna_adresa") == "ano"){
+            if(req.getParameter("stejna_adresa").equals("ano")){
                 adresa.setFakturacniUlice(req.getParameter("dorucovaci_ulice"));
                 adresa.setFakturacniCP(req.getParameter("dorucovaci_cp"));
                 adresa.setFakturacniMesto(req.getParameter("dorucovaci_mesto"));
@@ -85,8 +94,6 @@ public class ObjednavkaController implements Controller{
             }
             
             adresa = AdresaService.save(adresa);
-            System.out.println("aid adresy");
-            System.out.println(adresa.getIdAdresa());
             
             Zakaznik zakaznik = new Zakaznik();
             zakaznik.setJmeno(req.getParameter("jmeno"));
@@ -105,8 +112,19 @@ public class ObjednavkaController implements Controller{
         objednavka.setCenaDoruceni(zpusob.getCenaDoruceni());
         
         objednavka = ObjednavkaService.save(objednavka);
+      
+        HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) req.getSession().getAttribute("cart");
+        for (Map.Entry<Integer, Integer> item : cart.entrySet()) {
+            Produkt produkt = ProduktService.getProduktById(item.getKey());
+            ObjednavkaProdukt objednavkaProdukt = new ObjednavkaProdukt();
+            objednavkaProdukt.setObjednavka(objednavka);
+            objednavkaProdukt.setProdukt(produkt);
+            objednavkaProdukt.setCena(produkt.getCena());
+            objednavkaProdukt.setPocetKusu(Integer.parseInt(req.getParameter("pocet["+item.getKey()+"]")));
+            ObjednavkaService.saveObjednavkaProdukt(objednavkaProdukt);
+        }
         
-        
+        req.setAttribute("title", "Objednávka dokončena");
         req.setAttribute("view", "objednavka_odeslano");
         req.setAttribute("objednavka", objednavka);
     }

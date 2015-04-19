@@ -161,4 +161,12 @@ public class ObjednavkaService {
         ps.execute();
     }
     
+     public static void saveObjednavkaProdukt(ObjednavkaProdukt objednavkaProdukt) throws SQLException, ClassNotFoundException{
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("insert into ObjednavkaProdukt (id_objednavka,id_produkt,cena,pocetkusu) values(?,?,?,?)");
+        ps.setInt(1, objednavkaProdukt.getObjednavka().getIdObjednavka());
+        ps.setInt(2, objednavkaProdukt.getProdukt().getIdProdukt());
+        ps.setDouble(3, objednavkaProdukt.getCena());
+        ps.setInt(4, objednavkaProdukt.getPocetKusu());
+        ps.execute();
+     }
 }
