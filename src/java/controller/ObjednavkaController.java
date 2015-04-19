@@ -56,9 +56,21 @@ public class ObjednavkaController implements Controller{
         req.setAttribute("title", "Košík");
         req.setAttribute("view", "kosik");
         req.setAttribute("polozky", req.getSession().getAttribute("cart"));
-        req.setAttribute("produkty", ObjednavkaService.getProductsFromCart(req));
+        HashMap<Integer, Produkt> produkty = ObjednavkaService.getProductsFromCart(req);
+        req.setAttribute("produkty", produkty);
         req.setAttribute("totalPrice", ObjednavkaService.getCartTotalPrice(req));
         req.setAttribute("doprava", ZpusobDoruceniService.getAllZpusobyDoruceni());
+        
+        int dodani = 0;
+        for (Map.Entry<Integer, Produkt> produkt : produkty.entrySet()) {
+            if(produkt.getValue().getDobaDodani() > dodani) dodani = produkt.getValue().getDobaDodani();
+            if(produkt.getValue().getDobaDodani() == 0) {
+                dodani = 0;
+                break;
+            } 
+        }
+        
+        req.setAttribute("dobaDodani", dodani);
     }
     
     private void removeItem(HttpServletRequest req, HttpServletResponse res){

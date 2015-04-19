@@ -54,6 +54,15 @@
                 </div>
                             
                 <div class="row">
+                    <c:if test="${dobaDodani == 0}">
+                        Ohledně doby vyřízení objednávky se Vám ozveme.
+                    </c:if>
+                    <c:if test="${dobaDodani > 0}">
+                        Zboží Vám dodáme do ${dobaDodani} dní.
+                    </c:if>
+                </div>
+                            
+                <div class="row">
                     <hr>
                     <h3>Doprava</h3>
                     <div class="col-sm-5">
