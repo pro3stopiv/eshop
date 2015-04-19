@@ -28,11 +28,15 @@
                 <option value="${vyrobce.idVyrobce}" <c:if test="${vyrobce.idVyrobce == produkt.vyrobce.idVyrobce}"> selected="selected"</c:if>>${vyrobce.nazev}</option>
             </c:forEach>
         </select>
-        <br>
-        <c:forEach items="${kategorie}" var="kategor">
-            <input type="checkbox" name="kategorie[${kategor.idKategorie}]" <c:if test="${produkt.hasKategorie(kategor)}">checked="checked"</c:if> />${kategor.nazev}
-        </c:forEach>
-
+        <br />
+        <ul style="list-style-type: none;">
+            <h4>Kategorie</h4>
+            <c:forEach items="${kategorie}" var="kategor">
+                <li>
+                    <input type="checkbox" name="kategorie[${kategor.idKategorie}]" <c:if test="${produkt.hasKategorie(kategor)}">checked="checked"</c:if> />${kategor.nazev}
+                </li>
+            </c:forEach>
+        </ul>
         <br />
         <br />            
         <div class="row-centered">
