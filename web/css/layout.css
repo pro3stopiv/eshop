@@ -96,3 +96,8 @@ div.zakaznik {
     max-width: 600px;
     margin: 0 auto;
 }
+.produkt a {
+    color: #403E39;
+    text-decoration: none;
+}
+
