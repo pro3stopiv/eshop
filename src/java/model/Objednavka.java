@@ -22,6 +22,8 @@ public class Objednavka {
     private Zakaznik zakaznik;
     private List<ObjednavkaProdukt> produkty;
     
+    public static final int STAV_STORNO = 4;
+    
     private static final String[] stavyObjednavky = {"Nová","Zpracovává se", "Vyřízená", "Storno"};
     
     public int getIdObjednavka() {

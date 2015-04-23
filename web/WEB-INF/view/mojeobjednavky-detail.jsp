@@ -1,0 +1,125 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<div class="container-fluid">
+
+        <div class="row">
+            <h2 style="text-align: center;">Obsah objednávky</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Název zboží</th>
+                        <th>Počet kusů</th>
+                        <th>Cena za kus</th>
+                        <th>Cena za všechny</th>
+                    </tr>
+                </thead>
+                <c:forEach items="${objednavka.produkty}" var="produkt">
+                    <tr>
+                        <td><a href="${base_url}produkt.do?id=${produkt.produkt.idProdukt}">${produkt.produkt.nazev}</a></td>
+                        <td>${produkt.pocetKusu}</td>
+                        <td>${produkt.cena} Kč</td>
+                        <td>${produkt.cena * produkt.pocetKusu} Kč</td>
+                    </tr>
+                </c:forEach>
+                <tr>
+                    <td colspan="3"><b>Doprava:</b> ${objednavka.zpusobDoruceni.nazevZpusobu}</td>
+                    <td>${objednavka.cenaDoruceni} Kč</td>
+                </tr>
+                <tr>               
+                    <td colspan="3"><b>Cena celkem:</b></td>
+                    <td>${objednavka.celkovaCena} Kč</td>
+                </tr>
+            </table>
+        </div>
+
+        <hr style="width: 100%; height: 1px; background-color: gray;" />
+
+        <div class="row">
+            <h2 style="text-align: center;">Informace o zákazníkovi</h2>                    
+            <table class="table">      
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Jméno</th>
+                        <th>Příjmení</th>
+                        <th>E-mail</th>
+                        <th>Telefon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${objednavka.zakaznik.idZakaznik}</td>
+                        <td>${objednavka.zakaznik.jmeno}</td>
+                        <td>${objednavka.zakaznik.prijmeni}</td>                    
+                        <td>${objednavka.zakaznik.email}</td>
+                        <td>${objednavka.zakaznik.telefon}</td>
+                    </tr>
+                </tbody>
+            </table>            
+        </div>
+
+        <hr style="width: 100%; height: 1px; background-color: gray;" />
+
+        <div class="row adresy">
+            <h2 style="text-align: center;">Adresa</h2>                    
+            <div class="col-md-6">              
+                <table class="pull-left">
+                    <caption>Doručovací</caption>
+                    <tr>    
+                        <td>
+                            ${objednavka.zakaznik.adresa.dorucovaciUlice} ${objednavka.zakaznik.adresa.dorucovaciCP}<br />
+                            ${objednavka.zakaznik.adresa.dorucovaciPSC} ${objednavka.zakaznik.adresa.dorucovaciMesto}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table class="pull-right">
+                    <caption>Fakturační</caption>
+                    <tr>    
+                        <td>
+                            ${objednavka.zakaznik.adresa.fakturacniUlice} ${objednavka.zakaznik.adresa.fakturacniCP}<br />
+                            ${objednavka.zakaznik.adresa.fakturacniPSC} ${objednavka.zakaznik.adresa.fakturacniMesto}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <hr style="width: 100%; height: 1px; background-color: gray;" />
+
+        <div class="row adresy">
+            <h2 style="text-align: center;">Informace o objednávce</h2>
+            <div class="col-md-offset-3">
+                <div class="col-md-6">
+                    <table class="table">
+                        <tr>
+                            <td>Datum objednávky:</td>
+                            <td><fmt:formatDate value="${objednavka.datum}" pattern="dd.MM. yyyy" /></td>
+                        </tr>
+                        <tr>
+                            <td>Stav</td>
+                            <td>
+				${objednavka.stavyObjednavky[objednavka.stav-1]}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Celková cena</td>
+                            <td>${objednavka.celkovaCena} Kč</td>
+                        </tr>
+			<c:if test="${objednavka.stav == 1}">
+			<tr>
+			    <td>Zrušení objednávky</td>
+			    <td><a href="${base_url}moje-objednavky.do?action=storno&amp;id=${objednavka.idObjednavka}" class="btn btn-primary">Stornovat objednávku</a></td>
+			</tr>
+			</c:if>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+</div>
