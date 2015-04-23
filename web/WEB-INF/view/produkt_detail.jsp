@@ -1,12 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
+<div class="col-md-6">
 <h1>${produkt.nazev}</h1>
 <p>Cena: ${produkt.cena}Kč</p>
 <p>Popis: ${produkt.popis}</p>
 <p>Doba dodání: ${produkt.dobaDodani} dní</p>
 <p>Obsah alkoholu: ${produkt.obsahAlkoholu}%</p>
-<img src="${produkt.nazevObrazku}" />
+
 <br />
 
 <h2>Objednat</h2>
@@ -18,3 +20,10 @@
 </form>
 
 <p>Výrobce: <a href="./vyrobce.do?id=${produkt.vyrobce.idVyrobce}">${produkt.vyrobce.nazev}</a></p>
+
+</div>
+<div class="col-md-6">
+    <br />
+    <br />
+    <img src="${produkt.nazevObrazku}" />
+</div>
