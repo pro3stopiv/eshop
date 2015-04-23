@@ -15,10 +15,13 @@
             <input name="doba_dodani" class="form-control"<c:if test="${produkt != null}">value="${produkt.dobaDodani}"</c:if> />
             <label for="obsah_alkoholu" class="col-sm-8 control-label">Obsah alkoholu</label>
             <input name="obsah_alkoholu" class="form-control"<c:if test="${produkt != null}">value="${produkt.obsahAlkoholu}"</c:if> />
-
+            <br />
         <c:if test="${produkt != null}">
-            <img class="form-control" src="${produkt.nazevObrazku}" alt="obrazek" style="width: 50px; text-align: center;"  />
+
+            <img src="${produkt.nazevObrazku}" class="form-control img-responsive" alt="${produkt.nazev}" style="width: auto; height: 80px;" />
+
         </c:if>
+        <br />
         <label for="obrazek" class="col-sm-8 control-label">Název obrázku</label>
         <input name="obrazek" class="form-control"<c:if test="${produkt != null}">value="${produkt.nazevObrazku}"</c:if>  />
 
@@ -34,7 +37,7 @@
             <c:forEach items="${kategorie}" var="kategor">
                 <li>
                     <input type="checkbox" name="kategorie[${kategor.idKategorie}]" <c:if test="${produkt.hasKategorie(kategor)}">checked="checked"</c:if> />${kategor.nazev}
-                </li>
+                    </li>
             </c:forEach>
         </ul>
         <br />

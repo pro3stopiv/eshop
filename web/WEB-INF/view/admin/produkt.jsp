@@ -15,7 +15,7 @@
     </thead>
     <c:forEach items="${produkty}" var="produkt">
         <tr>
-	    <td><img src="${produkt.nazevObrazku}" alt="${produkt.nazev}" style="width: 50px; height: 50px;" /></td>
+            <td><div class="img-responsive"><img src="${produkt.nazevObrazku}" class="img-responsive" alt="${produkt.nazev}" style="height: 80px;" /></div></td>
             <td><a href="${base_url}produkt.do?action=showEdit&amp;id=${produkt.idProdukt}">${produkt.nazev}</a></td>
 	    <td>${produkt.cena} K&#269;</td>
 	    <td>${produkt.dobaDodani} dní</td>

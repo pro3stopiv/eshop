@@ -7,8 +7,7 @@
         <div class="col-md-4 text-center produkt">        
             <div class="thumbnail img-responsive" style="text-decoration: none;">
                 <a href="./produkt.do?id=${produkt.getProdukt().getIdProdukt()}"> 
-                    <!-- <img src="$//{produkt.produkt.nazevObrazku}" /> -->
-                    <img style="padding-right: 10px;" src="images/pivo.jpg" />            
+                    <img style="padding-right: 10px;" src="${produkt.produkt.nazevObrazku}" />            
                     <h2>${produkt.getProdukt().getNazev()}</h2>
 
                     <!-- <h3 class="text-danger">$//{produkt.getCena()} Kč</h3>   -->
