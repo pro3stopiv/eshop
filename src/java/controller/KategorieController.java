@@ -20,9 +20,8 @@ public class KategorieController implements Controller{
     @Override
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException {
         req.setAttribute("title", "Kategorie");
-        req.setAttribute("view","produkty");
+        req.setAttribute("view","produkty_kategorie");
         
-        System.out.println("ahoj");
         showProducts(req);
     }
     
