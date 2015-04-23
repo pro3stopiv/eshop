@@ -7,7 +7,14 @@
         <div class="col-md-4 text-center produkt">        
             <div class="thumbnail img-responsive" style="text-decoration: none;">
                 <a href="./produkt.do?id=${produkt.getProdukt().getIdProdukt()}"> 
-                    <img style="padding-right: 10px;" src="${produkt.produkt.nazevObrazku}" />            
+                    <c:choose>
+                        <c:when test="${!empty produkt.getProdukt().nazevObrazku}">
+                            <img style="padding-right: 10px;" src="${produkt.getProdukt().nazevObrazku}" />                                                                                                                                                                                                                                                                                                                                                             
+                        </c:when>
+                        <c:otherwise>  
+                            <img style="padding-right: 10px;" src="<c:url value="/images/produkt_placeholder.png" />" /> 
+                        </c:otherwise>
+                    </c:choose>      
                     <h2>${produkt.getProdukt().getNazev()}</h2>
 
                 <h3 class="text-danger">${produkt.getProdukt().getCena()} Kč</h3>   

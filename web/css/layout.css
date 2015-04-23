@@ -100,4 +100,7 @@ div.zakaznik {
     color: #403E39;
     text-decoration: none;
 }
-
+.produkt img {
+    max-height: 170px;
+    max-width: 205px;
+}
