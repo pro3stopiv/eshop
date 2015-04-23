@@ -34,6 +34,7 @@ public class RegistraceController implements Controller{
     
     private void showForm(HttpServletRequest req){
         req.setAttribute("view", "registrace");
+        req.setAttribute("title", "Registrace");
     }
     
     private void register(HttpServletRequest req) throws SQLException, Exception{

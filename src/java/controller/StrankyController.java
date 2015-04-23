@@ -18,12 +18,15 @@ public class StrankyController implements Controller {
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) {
         switch (req.getServletPath()) {
             case "/kontakt.do":
+                req.setAttribute("title", "Kontakty");
                 req.setAttribute("view", "kontakt");
                 break;
             case "/obchodni-podminky.do":
+                req.setAttribute("title", "Obchodní podmínky");
                 req.setAttribute("view", "podminky");
                 break;
             case "/o-nas.do":
+                req.setAttribute("title", "O nás");
                 req.setAttribute("view", "o_nas");
                 break;
         }

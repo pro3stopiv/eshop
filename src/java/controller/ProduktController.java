@@ -9,6 +9,7 @@ package controller;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Produkt;
 import service.KategorieService;
 import service.ObjednavkaService;
 import service.ProduktService;
@@ -36,9 +37,10 @@ public class ProduktController implements Controller{
     
     private void showDetail(HttpServletRequest req) throws SQLException, ClassNotFoundException{
         int id_produkt = Integer.parseInt(req.getParameter("id").toString());
-        req.setAttribute("title", "Produkt");
         req.setAttribute("view", "produkt_detail");
-        req.setAttribute("produkt", ProduktService.getProduktById(id_produkt));
+        Produkt produkt = ProduktService.getProduktById(id_produkt);
+        req.setAttribute("produkt", produkt);
+        req.setAttribute("title", produkt.getNazev());
     }
     
     private void addToCart(HttpServletRequest req){
