@@ -69,15 +69,7 @@
             <div class="row">
                 <div class="col-xs-3 kategorie">                    
                     <form class="navbar-form">
-                        <h3>Kategorie</h3>                    
-                        <div class="form-group">
-                            <input type="text" class="form-control input-sm right" placeholder="hledat">
-                        </div>
-                        <button type="submit" class="btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></button>                                    
-
-
                         <jsp:include page="./menu_kategorie.jsp" />
-
                         <jsp:include page="./menu_vyrobci.jsp" />
                     </form>
                 </div>
