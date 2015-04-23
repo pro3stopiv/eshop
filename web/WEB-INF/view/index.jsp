@@ -45,7 +45,7 @@
                                     <c:choose>
                                         <c:when test="${auth_state}">
                                             <form method="post" class="form-inline">                                    
-                                                Přihlášen uživatel ${auth_user.jmeno} ${auth_user.prijmeni} (${auth_user.email})     
+                                                Přihlášen: ${auth_user.jmeno} ${auth_user.prijmeni} (${auth_user.email})     
                                                 <a href="?logout=t" class="  btn-sm">Odhlásit</a>
                                             </form>                                                                                                                                                                                                                                                                                                                                                               
                                         </c:when>

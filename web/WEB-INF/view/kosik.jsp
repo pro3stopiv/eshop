@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <script type="text/javascript">
@@ -30,14 +31,14 @@
                     <table class="table">
                         <c:forEach var="item" items="${polozky}">
                             <tr>
-                                <td><img src="pivo.jpg" width="100" height="100"/></td>
+                                <td><img src="${produkty.get(item.key).nazevObrazku}" class="img-responsive" style="height: 100px;"/></td>                                
                                 <td>Název <strong>${produkty.get(item.key).nazev}</strong></td>
                                 <td>Cena za ks: <strong>${produkty.get(item.key).cena}Kč</strong></td>
                                 <td>
                                     Počet kusů: <input type="number" name="pocet[${item.key}]" value="${item.value}" />
                                 </td>
                                 <td>
-                                    Cena celkem: <strong>${produkty.get(item.key).cena * item.value}Kč</strong>
+                                    Cena celkem: <strong><fmt:formatNumber value="${produkty.get(item.key).cena * item.value}" pattern="#,##0.00" />&nbsp;Kč</strong>
                                 </td>
                                 <td>
                                     <a class="glyphicon glyphicon-remove" id="btn-remove" href="kosik.do?action=removeItem&amp;id=${item.key}"></a>
@@ -45,14 +46,14 @@
                             </tr>
                         </c:forEach>
                         <tr>
-                            <td>Celkem položek: <strong>${polozky.size()}</strong> </td>
+                            <td>Celkem&nbsppoložek: <strong>${polozky.size()}</strong> </td>
                             <td></td>
-                            <td>Celková cena: <strong>${totalPrice} Kč</strong></td>
+                            <td>Celková&nbspcena: <strong><fmt:formatNumber value="${totalPrice}" pattern="#,##0.00" />&nbspKč</strong></td>
 
                         </tr>
                     </table>
                 </div>
-                            
+
                 <div class="row">
                     <c:if test="${dobaDodani == 0}">
                         Ohledně doby vyřízení objednávky se Vám ozveme.
@@ -61,7 +62,7 @@
                         Zboží Vám dodáme do ${dobaDodani} dní.
                     </c:if>
                 </div>
-                            
+
                 <div class="row">
                     <hr>
                     <h3>Doprava</h3>
@@ -114,7 +115,7 @@
                         </div>
                     </div> 
                 </c:if>
-                
+
                 <div class="row">
                     <div class="col-sm-5">   
                         <br />  
