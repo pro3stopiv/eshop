@@ -145,7 +145,7 @@ public class ObjednavkaService {
     
     public static List<Objednavka> getAllObjednavky() throws ClassNotFoundException, SQLException {
 	List<Objednavka> objednavky = new ArrayList<>();
-	PreparedStatement ps = db.DB.getConnection().prepareStatement("select ID_objednavka from Objednavka order by stav");
+	PreparedStatement ps = db.DB.getConnection().prepareStatement("select ID_objednavka from Objednavka order by stav ASC,datum DESC,id_objednavka DESC");
 	ResultSet rs = ps.executeQuery();
 	while (rs.next()) {
             Objednavka o = ObjednavkaService.getObjednavkaById(rs.getInt("ID_objednavka"));
