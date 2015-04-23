@@ -87,7 +87,18 @@ public class ObjednavkaController implements Controller{
         if(req.getSession().getAttribute("auth_user") != null){
             objednavka.setZakaznik((Zakaznik) req.getSession().getAttribute("auth_user"));
         }else{
+            
+            List<String> errors = new ArrayList<>();
             Adresa adresa = new Adresa();
+            
+            Zakaznik zakaznik = new Zakaznik();
+            
+            zakaznik.setJmeno(req.getParameter("jmeno"));
+            zakaznik.setPrijmeni(req.getParameter("prijmeni"));
+            zakaznik.setEmail(req.getParameter("email"));
+            zakaznik.setTelefon(req.getParameter("telefon"));
+            zakaznik.setHeslo(utils.Hash.getHash(req.getParameter("heslo"),"SHA-256"));
+            
             adresa.setDorucovaciUlice(req.getParameter("dorucovaci_ulice"));
             adresa.setDorucovaciCP(req.getParameter("dorucovaci_cp"));
             adresa.setDorucovaciMesto(req.getParameter("dorucovaci_mesto"));
@@ -105,14 +116,37 @@ public class ObjednavkaController implements Controller{
                 adresa.setFakturacniPSC(req.getParameter("fakturacni_psc"));
             }
             
+            if(zakaznik.getJmeno().isEmpty()) errors.add("Zadejte jméno");
+            if(zakaznik.getPrijmeni().isEmpty()) errors.add("Zadejte příjmení");
+            if(zakaznik.getEmail().isEmpty()) errors.add("Zadejte e-mail");
+
+            if(ZakaznikService.getZakaznikByEmail(zakaznik.getEmail()).getIdZakaznik() != 0){
+                errors.add("Tento e-mail již je zaregistrován, použijte jiný");
+            }
+           
+            if(adresa.getDorucovaciUlice().isEmpty()) errors.add("Zadejte doručovací ulici");
+            if(adresa.getDorucovaciCP().isEmpty()) errors.add("Zadejte doručovací číslo popisné");
+            if(adresa.getDorucovaciMesto().isEmpty()) errors.add("Zadejte doručovací město");
+            if(adresa.getDorucovaciPSC().isEmpty()) errors.add("Zadejte doručovací PSČ");
+
+            if(adresa.getFakturacniUlice() == null || adresa.getFakturacniUlice().isEmpty()) errors.add("Zadejte fakturační ulici");
+            if(adresa.getFakturacniCP() == null || adresa.getFakturacniCP().isEmpty()) errors.add("Zadejte fakturační číslo popisné");
+            if(adresa.getFakturacniMesto() == null || adresa.getFakturacniMesto().isEmpty()) errors.add("Zadejte fakturační město");
+            if(adresa.getFakturacniPSC() == null || adresa.getFakturacniPSC().isEmpty()) errors.add("Zadejte fakturační PSČ");
+
+
+            
+            if(errors.size() > 0){
+                req.setAttribute("errors", errors);
+                zakaznik.setAdresa(adresa);
+                req.setAttribute("zakaznik", zakaznik);
+                showCart(req, res);
+                return;
+            }
+            
+            
             adresa = AdresaService.save(adresa);
             
-            Zakaznik zakaznik = new Zakaznik();
-            zakaznik.setJmeno(req.getParameter("jmeno"));
-            zakaznik.setPrijmeni(req.getParameter("prijmeni"));
-            zakaznik.setEmail(req.getParameter("email"));
-            zakaznik.setTelefon(req.getParameter("telefon"));
-            zakaznik.setHeslo(utils.Hash.getHash(req.getParameter("heslo"),"SHA-256"));
             zakaznik.setAdresa(adresa);
             zakaznik = ZakaznikService.save(zakaznik);
             

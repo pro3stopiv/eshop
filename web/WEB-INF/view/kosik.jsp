@@ -23,7 +23,6 @@
     </c:when>
     <c:otherwise>
         <div class="container-fluid">
-
             <form action="${base_url}kosik.do" method="post" class="form-group">
                 <input type="hidden" name="action" value="order" />
                 <div class="row">
@@ -79,11 +78,21 @@
                     <div class="row">
                         <hr>
                         <h3>Kontaktní údaje</h3>
+                        
+                         <c:if test="${errors != null}">
+                            Vyplňte prosím všechny údaje.
+                            <ul>
+                                <c:forEach var="error" items="${errors}">
+                                    <li>${error}</li>
+                                </c:forEach>
+                            </ul>
+                        </c:if>
+                        
                         <div class="col-sm-5">                      
-                            <input class="form-control" type="text" name="jmeno" placeholder="Jméno" /><br>
-                            <input class="form-control" type="text" name="prijmeni" placeholder="Příjmení" /><br>
-                            <input class="form-control" type="text" name="telefon" placeholder="Telefon" /><br>
-                            <input class="form-control" type="text" name="email" placeholder="Email" /><br>
+                            <input class="form-control" type="text" name="jmeno" placeholder="Jméno" value="${zakaznik.jmeno}" /><br>
+                            <input class="form-control" type="text" name="prijmeni" placeholder="Příjmení" value="${zakaznik.prijmeni}" /><br>
+                            <input class="form-control" type="text" name="telefon" placeholder="Telefon" value="${zakaznik.telefon}" /><br>
+                            <input class="form-control" type="text" name="email" placeholder="Email" value="${zakaznik.email}" /><br>
                             <input class="form-control" type="password" name="heslo" placeholder="Heslo" /><br>
 
                             <div>
@@ -97,19 +106,19 @@
                     <div class="row">
                         <div class="col-sm-5">
                             Doručovací adresa
-                            <input class="form-control" type="text" name="dorucovaci_ulice" placeholder="Ulice" /><br>
-                            <input class="form-control" type="text" name="dorucovaci_cp" placeholder="Číslo popisné" /><br>
-                            <input class="form-control" type="text" name="dorucovaci_mesto" placeholder="Město" /><br>
-                            <input class="form-control" type="text" name="dorucovaci_psc"  placeholder="PSČ"/>
+                            <input type="text" name="dorucovaci_ulice" class="form-control" placeholder="Ulice" value="${zakaznik.adresa.dorucovaciUlice}"  /><br />
+                            <input type="text" name="dorucovaci_cp" class="form-control" placeholder="Číslo popisné" value="${zakaznik.adresa.dorucovaciCP}"  /><br />
+                            <input type="text" name="dorucovaci_mesto" class="form-control" placeholder="Město"  value="${zakaznik.adresa.dorucovaciMesto}"  /><br />
+                            <input type="text" name="dorucovaci_psc" class="form-control" placeholder="PSČ" value="${zakaznik.adresa.dorucovaciPSC}"  /><br />
 
                         </div>
                         <div class="col-sm-5">                        
                             <div class="fakturacni-adr">
                                 Fakturační adresa
-                                <input class="form-control" type="text" name="fakturacni_ulice" placeholder="Ulice" /><br>
-                                <input class="form-control" type="text" name="fakturacni_cp" placeholder="Číslo popisné" /><br>
-                                <input class="form-control" type="text" name="fakturacni_mesto" placeholder="Město" /><br>
-                                <input class="form-control" type="text" name="fakturacni_psc" placeholder="PSČ" />
+                                <input type="text" name="fakturacni_ulice" class="form-control" placeholder="Ulice" value="${zakaznik.adresa.fakturacniUlice}" /><br />
+                                <input type="text" name="fakturacni_cp" class="form-control" placeholder="Číslo popisné"  value="${zakaznik.adresa.fakturacniCP}" /><br />
+                                <input type="text" name="fakturacni_mesto" class="form-control" placeholder="Město"  value="${zakaznik.adresa.fakturacniMesto}" /><br />
+                                <input type="text" name="fakturacni_psc" class="form-control" placeholder="PSČ"  value="${zakaznik.adresa.fakturacniPSC}" /><br />
                             </div>
                         </div>
                     </div> 

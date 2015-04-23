@@ -61,15 +61,35 @@ public class ZakaznikService {
             zakaznik.setPrijmeni(rs.getString("prijmeni"));
             zakaznik.setTelefon(rs.getString("telefon"));
             adresa.setIdAdresa(rs.getShort("id_adresa"));
-	    
-            
-        }
+	}
         adresa = AdresaService.getAdresaById(adresa.getIdAdresa());
         zakaznik.setAdresa(adresa);
         
+        return zakaznik;
+    }
+    
+    
+    
+    public static Zakaznik getZakaznikByEmail(String email) throws SQLException, ClassNotFoundException{
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from Zakaznik join Adresa using(id_adresa) where email = ?");
+        ps.setString(1, email);
+        ResultSet rs = ps.executeQuery();
+        
+        Zakaznik zakaznik = new Zakaznik();
+        Adresa adresa = new Adresa();
+        
+        while (rs.next()) {
+            zakaznik.setIdZakaznik(rs.getInt("id_zakaznik"));
+            zakaznik.setEmail(rs.getString("email"));
+            zakaznik.setJmeno(rs.getString("jmeno"));
+            zakaznik.setPrijmeni(rs.getString("prijmeni"));
+            zakaznik.setTelefon(rs.getString("telefon"));
+            adresa.setIdAdresa(rs.getShort("id_adresa"));
+	}
+        adresa = AdresaService.getAdresaById(adresa.getIdAdresa());
+        zakaznik.setAdresa(adresa);
         
         return zakaznik;
-        
     }
     
         
