@@ -40,6 +40,9 @@
                                     <li><a href="${base_url}obchodni-podminky.do">Obchodní podmínky</a></li>
                                     <li><a href="${base_url}o-nas.do">O nás</a></li>
                                     <li><a href="${base_url}kosik.do">Košík</a></li>
+				    <c:if test="${auth_state}">
+				    <li><a href="${base_url}moje-objednavky.do">Moje objednávky</a></li>
+				    </c:if>
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right" id="menu-pravo">
                                     <c:choose>
