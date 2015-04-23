@@ -41,10 +41,10 @@ public class VyrobceController implements Controller{
         int id_vyrobce = Integer.parseInt(req.getParameter("id"));
         Vyrobce vyrobce = VyrobceService.getVyrobceById(id_vyrobce);
       
-        req.setAttribute("title", "Výrobce");
         req.setAttribute("view", "vyrobce");
         
         req.setAttribute("vyrobce", vyrobce);
+        req.setAttribute("title", vyrobce.getNazev());
     }
     
     private void showProducts(HttpServletRequest req) throws SQLException, ClassNotFoundException{
@@ -53,6 +53,10 @@ public class VyrobceController implements Controller{
         
         req.setAttribute("produkty", produkty);
         req.setAttribute("view", "vyrobce_produkty");
+    
+        Vyrobce vyrobce = VyrobceService.getVyrobceById(Integer.parseInt(req.getParameter("id")));
+        req.setAttribute("vyrobce", vyrobce);
+        req.setAttribute("title", vyrobce.getNazev());
     }
     
 }

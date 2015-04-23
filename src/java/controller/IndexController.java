@@ -8,6 +8,7 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import service.ProduktService;
 
 /**
  *
@@ -17,8 +18,9 @@ public class IndexController implements Controller {
 
     @Override
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws Exception{
-        req.setAttribute("title", "Osoba");
+        req.setAttribute("title", "Úvod");
         req.setAttribute("view","uvod");
+        req.setAttribute("produkty", ProduktService.getRandomProdukty(6));
     }
     
 }

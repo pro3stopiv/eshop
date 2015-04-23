@@ -123,6 +123,22 @@ public class ProduktService {
         }
     }
     
+     public static List<Produkt> getRandomProdukty(int limit) throws SQLException, ClassNotFoundException{
+        
+        List<Produkt> produkty = new ArrayList<>();
+        
+        PreparedStatement ps = db.DB.getConnection().prepareStatement("select * from Produkt order by rand() limit ?");
+        ps.setInt(1, limit);
+        ResultSet rs = ps.executeQuery();
+        
+        while (rs.next()) {
+            Produkt p = ProduktService.getProduktById(rs.getInt("id_produkt"));
+            produkty.add(p);
+        }
+        
+        return produkty;
+    }
+    
     
     
     
