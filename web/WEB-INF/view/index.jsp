@@ -40,12 +40,15 @@
                                     <li<c:if test="${current_url == '/obchodni-podminky.do'}"> class="active"</c:if>><a href="${base_url}obchodni-podminky.do">Obchodní podmínky</a></li>
                                     <li<c:if test="${current_url == '/o-nas.do'}"> class="active"</c:if>><a href="${base_url}o-nas.do">O nás</a></li>
                                     <li<c:if test="${current_url == '/kosik.do'}"> class="active"</c:if>><a href="${base_url}kosik.do">Košík</a></li>
+				    <c:if test="${auth_state}">
+                                        <li<c:if test="${current_url == '/moje-objednavky.do'}"> class="active"</c:if>><a href="${base_url}moje-objednavky.do">Moje objednávky</a></li>=======
+				    </c:if>
                                 </ul>
                                 <ul class="nav navbar-nav navbar-right" id="menu-pravo">
                                     <c:choose>
                                         <c:when test="${auth_state}">
                                             <form method="post" class="form-inline">                                    
-                                                Přihlášen uživatel ${auth_user.jmeno} ${auth_user.prijmeni} (${auth_user.email})     
+                                                Přihlášen: ${auth_user.jmeno} ${auth_user.prijmeni} (${auth_user.email})     
                                                 <a href="?logout=t" class="  btn-sm">Odhlásit</a>
                                             </form>                                                                                                                                                                                                                                                                                                                                                               
                                         </c:when>

@@ -18,7 +18,7 @@
             <br />
         <c:if test="${produkt != null}">
 
-            <img src="${produkt.nazevObrazku}" class="form-control img-responsive" alt="${produkt.nazev}" style="width: auto; height: 80px;" />
+            <img src="${produkt.nazevObrazku}" class="img-responsive" alt="${produkt.nazev}" style="width: auto; height: 150px; margin: 0 auto;" />
 
         </c:if>
         <br />

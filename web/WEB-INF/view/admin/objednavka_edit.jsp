@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <div class="container-fluid">
@@ -96,7 +97,7 @@
                     <table class="table">
                         <tr>
                             <td>Datum objednávky:</td>
-                            <td>${objednavka.datum}</td>
+                            <td><fmt:formatDate value="${objednavka.datum}" pattern="dd.MM. yyyy" /></td>
                         </tr>
                         <tr>
                             <td>Stav</td>
