@@ -42,6 +42,7 @@ public class MojeObjednavkyController implements Controller {
     }
     
     
+
     private void showDetail(int id,HttpServletRequest req) throws SQLException, ClassNotFoundException {
 	if(isObjednavkaMy(id, req)) {
 	    Objednavka o = ObjednavkaService.getObjednavkaById(id);
@@ -49,8 +50,6 @@ public class MojeObjednavkyController implements Controller {
 	    req.setAttribute("objednavka", o);
 	    
 	}
-	
-	
     }
     
     private void showList(HttpServletRequest req) throws ClassNotFoundException, SQLException {

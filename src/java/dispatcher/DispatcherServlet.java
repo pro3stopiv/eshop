@@ -175,6 +175,8 @@ public class DispatcherServlet extends HttpServlet {
         request.setAttribute("menuKategorie", KategorieService.getAllKategorie());
         request.setAttribute("menuVyrobci", VyrobceService.getAllVyrobce());
         
+        request.setAttribute("current_url",request.getServletPath());
+        
         if(request.getSession().getAttribute("auth_user") != null){
             request.setAttribute("auth_state", true);
             request.setAttribute("auth_user", request.getSession().getAttribute("auth_user"));

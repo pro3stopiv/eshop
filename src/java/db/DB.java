@@ -17,7 +17,11 @@ public class DB {
         if(connection == null){
        //     try {
 
+<<<<<<< HEAD
                /* String url = "jdbc:mysql://localhost:3306/dbs2?useUnicode=yes&characterEncoding=utf8";
+=======
+          /*      String url = "jdbc:mysql://localhost:3306/dbs2?useUnicode=yes&characterEncoding=utf8";
+>>>>>>> 34a82f4fa43401e100e49e0ffc7122436a13677c
                 String user = "root";
                 String password = "";*/
             
