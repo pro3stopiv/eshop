@@ -157,6 +157,19 @@ public class ObjednavkaService {
 	
     }
     
+    public static List<Objednavka> getObjednavkyByIdZakaznika(int id_zakaznika) throws ClassNotFoundException, SQLException {
+	List<Objednavka> objednavky = new ArrayList<>();
+	PreparedStatement ps = db.DB.getConnection().prepareStatement("select ID_objednavka from Objednavka where id_zakaznik = ? order by stav ASC,datum DESC,id_objednavka DESC");
+	ps.setInt(1, id_zakaznika);
+	ResultSet rs = ps.executeQuery();
+	while (rs.next()) {
+            Objednavka o = ObjednavkaService.getObjednavkaById(rs.getInt("ID_objednavka"));
+            objednavky.add(o);
+        }
+        return objednavky;
+	
+    }
+    
      public static void delete(Objednavka objednavka) throws ClassNotFoundException, SQLException{
         PreparedStatement ps = db.DB.getConnection().prepareStatement("delete from Objednavka where id_objednavka = ?");
         ps.setInt(1, objednavka.getIdObjednavka());
@@ -171,4 +184,17 @@ public class ObjednavkaService {
         ps.setInt(4, objednavkaProdukt.getPocetKusu());
         ps.execute();
      }
+
+    
+     public static void setStorno(int id_objednavky) throws ClassNotFoundException, SQLException {
+	 Objednavka objednavka = ObjednavkaService.getObjednavkaById(id_objednavky);
+	 objednavka.setStav(Objednavka.STAV_STORNO);
+	 
+	 PreparedStatement ps = db.DB.getConnection().prepareStatement("update Objednavka set stav = ? where id_objednavka = ?",Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, objednavka.getStav());
+            ps.setInt(2, objednavka.getIdObjednavka());
+            ps.execute();
+     }
+     
+     
 }

@@ -53,7 +53,7 @@
                                             </form>                                                                                                                                                                                                                                                                                                                                                               
                                         </c:when>
                                         <c:otherwise>  
-                                            <form method="post" class="form-inline" id="login">                                    
+                                            <form method="post" class="form-inline" id="login"  action="index.do">                                    
                                                 <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required>
                                                 <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Heslo" required>
                                                 <input type="submit" class="btn btn-md btn-primary" value="Přihlásit"/>

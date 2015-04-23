@@ -18,6 +18,7 @@ public class DB {
        //     try {
 
           /*      String url = "jdbc:mysql://localhost:3306/dbs2?useUnicode=yes&characterEncoding=utf8";
+
                 String user = "root";
                 String password = "";*/
             

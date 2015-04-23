@@ -6,6 +6,7 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Objednavka;
@@ -28,27 +29,56 @@ public class MojeObjednavkyController implements Controller {
 		     }
 		     break;
 		     
-		 case "setStorno":
-		     
+		 case "storno":
+		     if(req.getParameter("id") != null) {
+			 setStorno(Integer.parseInt(req.getParameter("id")),req);
+		     }
 		     break;
 	     }
+	 }
+	 else {
+	     showList(req);
 	 }
     }
     
     
-    private void showDetail(int id,HttpServletRequest req) {
-	
-	
-	
+
+    private void showDetail(int id,HttpServletRequest req) throws SQLException, ClassNotFoundException {
+	if(isObjednavkaMy(id, req)) {
+	    Objednavka o = ObjednavkaService.getObjednavkaById(id);
+	    req.setAttribute("view", "mojeobjednavky-detail");
+	    req.setAttribute("objednavka", o);
+	    
+	}
     }
     
+    private void showList(HttpServletRequest req) throws ClassNotFoundException, SQLException {
+	List<Objednavka> objednavky = ObjednavkaService.getObjednavkyByIdZakaznika(getZakaznikFromSession(req).getIdZakaznik());
+	req.setAttribute("view", "mojeobjednavky");
+	req.setAttribute("objednavky", objednavky);
+    }
+    
+    private void setStorno(int id_objednavky, HttpServletRequest req) throws SQLException, ClassNotFoundException {
+	if(isObjednavkaMy(id_objednavky, req)) {
+	    ObjednavkaService.setStorno(id_objednavky);
+	}
+	showList(req);
+	
+
+    }
     
     private Boolean isObjednavkaMy(int id,HttpServletRequest req) throws SQLException, ClassNotFoundException {
 	Objednavka o = ObjednavkaService.getObjednavkaById(id);
-	Zakaznik z = (Zakaznik)req.getSession().getAttribute("auth_user");
+	Zakaznik z = getZakaznikFromSession(req);
 	
 	return (o.getZakaznik().getIdZakaznik() == z.getIdZakaznik());
 	
     }
+    
+    
+    private Zakaznik getZakaznikFromSession(HttpServletRequest req) {
+	return (Zakaznik)req.getSession().getAttribute("auth_user");
+    }
+    
     
 }
