@@ -37,9 +37,7 @@ public class MojeObjednavkyController implements Controller {
     
     
     private void showDetail(int id,HttpServletRequest req) {
-	if(isObjednavkaMy(id, req)) {
-	    
-	}
+	
 	
 	
     }
