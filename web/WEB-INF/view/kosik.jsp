@@ -30,14 +30,14 @@
                     <table class="table">
                         <c:forEach var="item" items="${polozky}">
                             <tr>
-                                <td><img src="${produkty.get(item.key).nazevObrazku}" class="img-responsive" style="height: 100px;"/></td>                                
-                                <td>Název <strong>${produkty.get(item.key).nazev}</strong></td>
-                                <td>Cena za ks: <strong>${produkty.get(item.key).cena}Kč</strong></td>
+                                <td><img src="${item.value.produkt.nazevObrazku}" class="img-responsive" style="height: 100px;"/></td>                                
+                                <td>Název <strong>${item.value.produkt.nazev}</strong></td>
+                                <td>Cena za ks: <strong>${item.value.produkt.cena}Kč</strong></td>
                                 <td>
-                                    Počet kusů: <input type="number" name="pocet[${item.key}]" value="${item.value}" />
+                                    Počet kusů: <input type="number" name="pocet[${item.key}]" value="${item.value.pocet}" />
                                 </td>
                                 <td>
-                                    Cena celkem: <strong><fmt:formatNumber value="${produkty.get(item.key).cena * item.value}" pattern="#,##0.00" />&nbsp;Kč</strong>
+                                    Cena celkem: <strong><fmt:formatNumber value="${item.value.produkt.cena * item.value.pocet}" pattern="#,##0.00" />&nbsp;Kč</strong>
                                 </td>
                                 <td>
                                     <a class="glyphicon glyphicon-remove" id="btn-remove" href="kosik.do?action=removeItem&amp;id=${item.key}"></a>

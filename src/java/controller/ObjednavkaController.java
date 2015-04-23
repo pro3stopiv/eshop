@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Adresa;
 import model.Objednavka;
 import model.ObjednavkaProdukt;
+import model.PolozkaObjednavky;
 import model.Produkt;
 import model.Zakaznik;
 import model.ZpusobDoruceni;
@@ -53,18 +54,18 @@ public class ObjednavkaController implements Controller{
     }
     
     private void showCart(HttpServletRequest req, HttpServletResponse res) throws SQLException, ClassNotFoundException{
+        HashMap<Integer, PolozkaObjednavky> cart = (HashMap<Integer, PolozkaObjednavky>) req.getSession().getAttribute("cart");
+        
         req.setAttribute("title", "Košík");
         req.setAttribute("view", "kosik");
-        req.setAttribute("polozky", req.getSession().getAttribute("cart"));
-        HashMap<Integer, Produkt> produkty = ObjednavkaService.getProductsFromCart(req);
-        req.setAttribute("produkty", produkty);
+        req.setAttribute("polozky", cart);
         req.setAttribute("totalPrice", ObjednavkaService.getCartTotalPrice(req));
         req.setAttribute("doprava", ZpusobDoruceniService.getAllZpusobyDoruceni());
         
         int dodani = 0;
-        for (Map.Entry<Integer, Produkt> produkt : produkty.entrySet()) {
-            if(produkt.getValue().getDobaDodani() > dodani) dodani = produkt.getValue().getDobaDodani();
-            if(produkt.getValue().getDobaDodani() == 0) {
+        for (Map.Entry<Integer, PolozkaObjednavky> produkt : cart.entrySet()) {
+            if(produkt.getValue().getProdukt().getDobaDodani() > dodani) dodani = produkt.getValue().getProdukt().getDobaDodani();
+            if(produkt.getValue().getProdukt().getDobaDodani() == 0) {
                 dodani = 0;
                 break;
             } 
@@ -159,8 +160,8 @@ public class ObjednavkaController implements Controller{
         
         objednavka = ObjednavkaService.save(objednavka);
       
-        HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) req.getSession().getAttribute("cart");
-        for (Map.Entry<Integer, Integer> item : cart.entrySet()) {
+        HashMap<Integer, PolozkaObjednavky> cart = (HashMap<Integer, PolozkaObjednavky>) req.getSession().getAttribute("cart");
+        for (Map.Entry<Integer, PolozkaObjednavky> item : cart.entrySet()) {
             Produkt produkt = ProduktService.getProduktById(item.getKey());
             ObjednavkaProdukt objednavkaProdukt = new ObjednavkaProdukt();
             objednavkaProdukt.setObjednavka(objednavka);

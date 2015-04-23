@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import model.Objednavka;
 import model.ObjednavkaProdukt;
+import model.PolozkaObjednavky;
 import model.Produkt;
 import model.Vyrobce;
 import model.Zakaznik;
@@ -29,15 +30,17 @@ import model.ZpusobDoruceni;
  */
 public class ObjednavkaService {
     
-    public static void addToCart(int id_produkt, int pocet, HttpServletRequest request){
+    public static void addToCart(int id_produkt, int pocet, HttpServletRequest request) throws SQLException, ClassNotFoundException{
         HttpSession session = request.getSession();
         
-        HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
+        HashMap<Integer, PolozkaObjednavky> cart = (HashMap<Integer, PolozkaObjednavky>) session.getAttribute("cart");
         
         if(cart.get(id_produkt) != null){
-            cart.replace(id_produkt, cart.get(id_produkt) + pocet);
+            PolozkaObjednavky polozka = cart.get(id_produkt);
+            polozka.setPocet(polozka.getPocet() + pocet);
+            cart.replace(id_produkt, polozka);
         }else{
-            cart.put(id_produkt, pocet);
+            cart.put(id_produkt, new PolozkaObjednavky(ProduktService.getProduktById(id_produkt), pocet));
         }
         
         session.setAttribute("cart", cart);
@@ -47,7 +50,7 @@ public class ObjednavkaService {
     public static void removeItem(int id_produkt, HttpServletRequest request){
         HttpSession session = request.getSession();
         
-        HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) session.getAttribute("cart");
+        HashMap<Integer, PolozkaObjednavky> cart = (HashMap<Integer, PolozkaObjednavky>) session.getAttribute("cart");
         
         if(cart.get(id_produkt) != null){
             cart.remove(id_produkt);
@@ -57,7 +60,7 @@ public class ObjednavkaService {
             
     }
     
-    public static HashMap<Integer, Produkt> getProductsFromCart(HttpServletRequest req) throws SQLException, ClassNotFoundException{
+    /*public static HashMap<Integer, Produkt> getProductsFromCart(HttpServletRequest req) throws SQLException, ClassNotFoundException{
         HashMap<Integer, Produkt> produkty = new HashMap<>();
         
         HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) req.getSession().getAttribute("cart");
@@ -67,14 +70,13 @@ public class ObjednavkaService {
         }
         
         return produkty;
-    }
+    }*/
     
     public static double getCartTotalPrice(HttpServletRequest req) throws SQLException, ClassNotFoundException{
         double price = 0;
-        HashMap<Integer, Integer> cart = (HashMap<Integer, Integer>) req.getSession().getAttribute("cart");
-        for (Map.Entry<Integer, Integer> item : cart.entrySet()) {
-            Produkt p = ProduktService.getProduktById(item.getKey());
-            price += p.getCena() * item.getValue();
+        HashMap<Integer, PolozkaObjednavky> cart = (HashMap<Integer, PolozkaObjednavky>) req.getSession().getAttribute("cart");
+        for (Map.Entry<Integer, PolozkaObjednavky> item : cart.entrySet()) {
+            price += item.getValue().getProdukt().getCena() * item.getValue().getPocet();
         }
         return price;
     }
