@@ -53,6 +53,9 @@ public class VyrobceController implements Controller{
         
         req.setAttribute("produkty", produkty);
         req.setAttribute("view", "vyrobce_produkty");
+    
+        Vyrobce vyrobce = VyrobceService.getVyrobceById(Integer.parseInt(req.getParameter("id")));
+        req.setAttribute("vyrobce", vyrobce);
     }
     
 }

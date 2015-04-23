@@ -9,6 +9,7 @@ package controller;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Kategorie;
 import service.KategorieService;
 
 /**
@@ -28,6 +29,10 @@ public class KategorieController implements Controller{
     private void showProducts(HttpServletRequest req) throws SQLException, ClassNotFoundException{
         int id_kategorie = Integer.parseInt(req.getParameter("id").toString());
         req.setAttribute("produkty", KategorieService.getProdukty(id_kategorie));
+       
+        Kategorie kategorie = KategorieService.getKategorieById(Integer.parseInt(req.getParameter("id")));
+        req.setAttribute("kategorie", kategorie);
+    
     }
     
 }
