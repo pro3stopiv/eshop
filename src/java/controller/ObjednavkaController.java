@@ -171,6 +171,9 @@ public class ObjednavkaController implements Controller{
             ObjednavkaService.saveObjednavkaProdukt(objednavkaProdukt);
         }
         
+        cart.clear();
+        req.getSession().setAttribute("cart", cart);
+        
         req.setAttribute("title", "Objednávka dokončena");
         req.setAttribute("view", "objednavka_odeslano");
         req.setAttribute("objednavka", objednavka);

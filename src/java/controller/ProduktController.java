@@ -43,7 +43,7 @@ public class ProduktController implements Controller{
         req.setAttribute("title", produkt.getNazev());
     }
     
-    private void addToCart(HttpServletRequest req){
+    private void addToCart(HttpServletRequest req) throws SQLException, ClassNotFoundException{
         int id_produkt = Integer.parseInt(req.getParameter("id_produkt").toString());
         int pocet = Integer.parseInt(req.getParameter("pocet").toString());
         
