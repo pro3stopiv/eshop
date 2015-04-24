@@ -42,7 +42,7 @@ div.paticka {
     margin-top: 8px;
 }
 .list-group-item {
- background-color: #DFF0D8;
+ background-color: white;
 }
 
 
@@ -105,5 +105,5 @@ div.zakaznik {
     
 }
 .thumbnail {
-    background-color: #DFF0D8;
+    background-color: white;
 }
