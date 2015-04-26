@@ -50,7 +50,7 @@
                                         <c:when test="${admin_auth_state}">
                                             <form method="post" class="form-inline">                                    
                                                 Přihlášen uživatel ${admin_auth_user.login}     
-                                                <a href="?logout=t" class="  btn-sm">Odhlásit</a>
+                                                <a href="${base_url}index.do?logout=t" class="  btn-sm">Odhlásit</a>
                                             </form>
                                         </c:when>
                                         <c:otherwise>  

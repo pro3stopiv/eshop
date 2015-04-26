@@ -121,7 +121,6 @@ public class DispatcherServlet extends HttpServlet {
                 session.setAttribute("cart", new HashMap<>());
             }
             
-            
             Controller controller = mapovaniURL.get(request.getServletPath());
 
             if(controller != null){
