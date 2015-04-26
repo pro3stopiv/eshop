@@ -106,4 +106,5 @@ div.zakaznik {
 }
 .thumbnail {
     background-color: white;
+    height: 320px;
 }
