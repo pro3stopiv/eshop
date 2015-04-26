@@ -1,24 +1,26 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <a href="${base_url}produkt.do?action=showEdit" class="btn btn-primary">Nový produkt</a>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <a href="${base_url}produkt.do?action=showEdit" class="btn btn-primary">NovÃ½ produkt</a>
 <table class="table table-hover">
     <thead>
 	<tr>
-	    <th>Obrázek</th>
-	    <th>Název</th>
+	    <th>ObrÃ¡zek</th>
+	    <th>NÃ¡zev</th>
 	    <th>Cena</th>
-	    <th>Doba dodání</th>
+	    <th>Doba dodÃ¡nÃ­</th>
 	    <th>Obsah alkoholu</th>
-	    <th>Výrobce</th>
+	    <th>VÃ½robce</th>
 	    <th>Kategorie</th>
-	    <th>Smazání</th>
+	    <th>SmazÃ¡nÃ­</th>
 	</tr>
     </thead>
     <c:forEach items="${produkty}" var="produkt">
         <tr>
             <td><div class="img-responsive"><img src="${produkt.nazevObrazku}" class="img-responsive" alt="${produkt.nazev}" style="height: 80px;" /></div></td>
             <td><a href="${base_url}produkt.do?action=showEdit&amp;id=${produkt.idProdukt}">${produkt.nazev}</a></td>
-	    <td>${produkt.cena} K&#269;</td>
-	    <td>${produkt.dobaDodani} dní</td>
+	    <td><fmt:formatNumber value="${produkt.cena}" pattern="##0.00 KÄ" /></td>
+	    <td>${produkt.dobaDodani} dnÃ­</td>
 	    <td>${produkt.obsahAlkoholu} %</td>
 	    <td><a href="${base_url}vyrobce.do?action=showEdit&amp;id=${produkt.vyrobce.idVyrobce}">${produkt.vyrobce.nazev}</a></td>
 	    <td>

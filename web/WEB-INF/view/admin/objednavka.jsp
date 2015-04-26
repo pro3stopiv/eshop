@@ -43,7 +43,7 @@
         <td><fmt:formatDate value="${objednavka.datum}" pattern="dd.MM. yyyy" /></td>
 
         <td><a href="${base_url}zakaznik.do?action=showEdit&amp;id=${objednavka.zakaznik.idZakaznik}">${objednavka.zakaznik.jmeno} ${objednavka.zakaznik.prijmeni}</a></td>
-        <td>${objednavka.celkovaCena} K&#269;</td>
+        <td><fmt:formatNumber value="${objednavka.celkovaCena}" pattern="#,##0.00 Kč" /></td>
     </tr>
    
 </c:forEach>

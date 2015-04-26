@@ -32,9 +32,9 @@
                             <tr>
                                 <td><img src="${item.value.produkt.nazevObrazku}" class="img-responsive" style="height: 100px;"/></td>                                
                                 <td>Název <strong>${item.value.produkt.nazev}</strong></td>
-                                <td>Cena za ks: <strong>${item.value.produkt.cena}Kč</strong></td>
+                                <td>Cena za ks: <strong><fmt:formatNumber value="${item.value.produkt.cena}" pattern="#,##0.00" />&nbsp;Kč</strong></td>
                                 <td>
-                                    Počet kusů: <input type="number" name="pocet[${item.key}]" value="${item.value.pocet}" />
+                                    Počet kusů: <input type="number" name="pocet[${item.key}]" value="${item.value.pocet}" min="1" />
                                 </td>
                                 <td>
                                     Cena celkem: <strong><fmt:formatNumber value="${item.value.produkt.cena * item.value.pocet}" pattern="#,##0.00" />&nbsp;Kč</strong>
@@ -90,10 +90,10 @@
                         </c:if>
                         
                         <div class="col-sm-5">                      
-                            <input class="form-control" type="text" name="jmeno" placeholder="Jméno" value="${zakaznik.jmeno}" /><br>
-                            <input class="form-control" type="text" name="prijmeni" placeholder="Příjmení" value="${zakaznik.prijmeni}" /><br>
+                            <input class="form-control" type="text" name="jmeno" placeholder="Jméno" value="${zakaznik.jmeno}" required /><br>
+                            <input class="form-control" type="text" name="prijmeni" placeholder="Příjmení" value="${zakaznik.prijmeni}" required /><br>
                             <input class="form-control" type="text" name="telefon" placeholder="Telefon" value="${zakaznik.telefon}" /><br>
-                            <input class="form-control" type="text" name="email" placeholder="Email" value="${zakaznik.email}" /><br>
+                            <input class="form-control" type="email" name="email" placeholder="Email" value="${zakaznik.email}" required /><br>
                             <input class="form-control" type="password" name="heslo" placeholder="Heslo" /><br>
 
                             <div>
@@ -107,10 +107,10 @@
                     <div class="row">
                         <div class="col-sm-5">
                             Doručovací adresa
-                            <input type="text" name="dorucovaci_ulice" class="form-control" placeholder="Ulice" value="${zakaznik.adresa.dorucovaciUlice}"  /><br />
-                            <input type="text" name="dorucovaci_cp" class="form-control" placeholder="Číslo popisné" value="${zakaznik.adresa.dorucovaciCP}"  /><br />
-                            <input type="text" name="dorucovaci_mesto" class="form-control" placeholder="Město"  value="${zakaznik.adresa.dorucovaciMesto}"  /><br />
-                            <input type="text" name="dorucovaci_psc" class="form-control" placeholder="PSČ" value="${zakaznik.adresa.dorucovaciPSC}"  /><br />
+                            <input type="text" name="dorucovaci_ulice" class="form-control" placeholder="Ulice" value="${zakaznik.adresa.dorucovaciUlice}" required  /><br />
+                            <input type="text" name="dorucovaci_cp" class="form-control" placeholder="Číslo popisné" value="${zakaznik.adresa.dorucovaciCP}" required /><br />
+                            <input type="text" name="dorucovaci_mesto" class="form-control" placeholder="Město"  value="${zakaznik.adresa.dorucovaciMesto}" required /><br />
+                            <input type="text" name="dorucovaci_psc" class="form-control" placeholder="PSČ" value="${zakaznik.adresa.dorucovaciPSC}" required /><br />
 
                         </div>
                         <div class="col-sm-5">                        

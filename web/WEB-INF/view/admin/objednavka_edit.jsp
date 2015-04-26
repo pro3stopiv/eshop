@@ -19,17 +19,17 @@
                     <tr>
                         <td><a href="${base_url}produkt.do?action=showEdit&amp;id=${produkt.produkt.idProdukt}">${produkt.produkt.nazev} (${produkt.produkt.idProdukt})</a></td>
                         <td>${produkt.pocetKusu}</td>
-                        <td>${produkt.cena} Kč</td>
-                        <td>${produkt.cena * produkt.pocetKusu} Kč</td>
+                        <td><fmt:formatNumber value="${produkt.cena}" pattern="#,##0.00 Kč" /></td>
+                        <td><fmt:formatNumber value="${produkt.cena * produkt.pocetKusu}" pattern="#,##0.00 Kč" /></td>
                     </tr>
                 </c:forEach>
                 <tr>
                     <td colspan="3"><b>Doprava:</b> ${objednavka.zpusobDoruceni.nazevZpusobu}</td>
-                    <td>${objednavka.cenaDoruceni} Kč;</td>
+                    <td><fmt:formatNumber value="${objednavka.cenaDoruceni}" pattern="#,##0.00 Kč" /></td>
                 </tr>
                 <tr>               
                     <td colspan="3"><b>Cena celkem:</b></td>
-                    <td>${objednavka.celkovaCena} Kč</td>
+                    <td><fmt:formatNumber value="${objednavka.celkovaCena}" pattern="#,##0.00 Kč" /></td>
                 </tr>
             </table>
         </div>
@@ -111,7 +111,7 @@
                         </tr>
                         <tr>
                             <td>Celková cena</td>
-                            <td>${objednavka.celkovaCena} Kč</td>
+                            <td><fmt:formatNumber value="${objednavka.celkovaCena}" pattern="#,##0.00 Kč" /></td>
                         </tr>                
                     </table>
                 </div>
