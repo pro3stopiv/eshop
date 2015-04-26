@@ -41,7 +41,7 @@
 
         <td><fmt:formatDate value="${objednavka.datum}" pattern="dd.MM. yyyy" /></td>
 
-        <td>${objednavka.celkovaCena} K&#269;</td>
+        <td><fmt:formatNumber value="${objednavka.celkovaCena}" pattern="#,##0.00 Kč" /></td>
 	
 	    </tr>
    
