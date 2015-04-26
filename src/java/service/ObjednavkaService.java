@@ -31,20 +31,21 @@ import model.ZpusobDoruceni;
 public class ObjednavkaService {
     
     public static void addToCart(int id_produkt, int pocet, HttpServletRequest request) throws SQLException, ClassNotFoundException{
-        HttpSession session = request.getSession();
-        
-        HashMap<Integer, PolozkaObjednavky> cart = (HashMap<Integer, PolozkaObjednavky>) session.getAttribute("cart");
-        
-        if(cart.get(id_produkt) != null){
-            PolozkaObjednavky polozka = cart.get(id_produkt);
-            polozka.setPocet(polozka.getPocet() + pocet);
-            cart.replace(id_produkt, polozka);
-        }else{
-            cart.put(id_produkt, new PolozkaObjednavky(ProduktService.getProduktById(id_produkt), pocet));
+        if(pocet > 0){
+            HttpSession session = request.getSession();
+
+            HashMap<Integer, PolozkaObjednavky> cart = (HashMap<Integer, PolozkaObjednavky>) session.getAttribute("cart");
+
+            if(cart.get(id_produkt) != null){
+                PolozkaObjednavky polozka = cart.get(id_produkt);
+                polozka.setPocet(polozka.getPocet() + pocet);
+                cart.replace(id_produkt, polozka);
+            }else{
+                cart.put(id_produkt, new PolozkaObjednavky(ProduktService.getProduktById(id_produkt), pocet));
+            }
+
+            session.setAttribute("cart", cart);
         }
-        
-        session.setAttribute("cart", cart);
-            
     }
     
     public static void removeItem(int id_produkt, HttpServletRequest request){
