@@ -121,6 +121,10 @@ public class DispatcherServlet extends HttpServlet {
                 session.setAttribute("cart", new HashMap<>());
             }
             
+            setGlobalFrontendAttributes(request, response);
+            
+            frontedAuth(request);
+            
             Controller controller = mapovaniURL.get(request.getServletPath());
 
             if(controller != null){
@@ -131,8 +135,6 @@ public class DispatcherServlet extends HttpServlet {
                 request.setAttribute("message","Stránka neexistuje");
             }
             
-            frontedAuth(request);
-            setGlobalFrontendAttributes(request, response);
         }
         catch(Exception ex){
             request.setAttribute("view", "error");
@@ -175,14 +177,7 @@ public class DispatcherServlet extends HttpServlet {
         request.setAttribute("menuVyrobci", VyrobceService.getAllVyrobce());
         
         request.setAttribute("current_url",request.getServletPath());
-        
-        if(request.getSession().getAttribute("auth_user") != null){
-            request.setAttribute("auth_state", true);
-            request.setAttribute("auth_user", request.getSession().getAttribute("auth_user"));
-        }else{
-            request.setAttribute("auth_state", false);
-        }
-        
+        request.setAttribute("base_url", getBaseUrl(request)+"/");
     }
 
     private void frontedAuth(HttpServletRequest request) throws Exception{
@@ -194,7 +189,12 @@ public class DispatcherServlet extends HttpServlet {
         }else if(request.getParameter("logout") != null && request.getParameter("logout").equals("t")){
             ZakaznikService.logout(request);
         }
-        request.setAttribute("base_url", getBaseUrl(request)+"/");
+        if(request.getSession().getAttribute("auth_user") != null){
+            request.setAttribute("auth_state", true);
+            request.setAttribute("auth_user", request.getSession().getAttribute("auth_user"));
+        }else{
+            request.setAttribute("auth_state", false);
+        }
     }
     
     private void setGlobalAdminAttributes(HttpServletRequest request, HttpServletResponse reponse) {
