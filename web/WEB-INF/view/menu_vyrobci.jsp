@@ -2,6 +2,6 @@
 <div class="list-group">
     <h3>Pivovary</h3>
     <c:forEach items="${menuVyrobci}" var="v">
-        <a href="./vyrobceVypis.do?id=${v.idVyrobce}" class="list-group-item<c:if test="${current_url == '/vyrobceVypis.do' && vyrobce.idVyrobce==v.idVyrobce}"> active</c:if>">${v.nazev}</a>
+        <a href="./vyrobce.do?id=${v.idVyrobce}" class="list-group-item<c:if test="${current_url == '/vyrobce.do' && vyrobce.idVyrobce==v.idVyrobce}"> active</c:if>">${v.nazev}</a>
     </c:forEach>
 </div>
