@@ -205,6 +205,7 @@ public class DispatcherServlet extends HttpServlet {
             request.setAttribute("admin_auth_state", false);
         }
         request.setAttribute("base_url", getBaseUrl(request)+"/admin/");
+        request.setAttribute("title", "Administrace");
     }
     
     private void adminAuth(HttpServletRequest request) throws Exception{
