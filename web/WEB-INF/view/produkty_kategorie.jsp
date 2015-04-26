@@ -18,7 +18,7 @@
                     </c:choose>      
                     <h2>${produkt.getProdukt().getNazev()}</h2>
 
-		    <h3 class="text-danger"><fmt:formatNumber value="${produkt.cena}" pattern="#,##0.00 Kč" /></h3>   
+		    <h3 class="text-danger"><fmt:formatNumber value="${produkt.produkt.cena}" pattern="#,##0.00 Kč" /></h3>   
                 </a>
             </div>
         </div>
