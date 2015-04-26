@@ -30,8 +30,17 @@
                     <table class="table">
                         <c:forEach var="item" items="${polozky}">
                             <tr>
-                                <td><img src="${item.value.produkt.nazevObrazku}" class="img-responsive" style="height: 100px;"/></td>                                
-                                <td>Název <strong>${item.value.produkt.nazev}</strong></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${!empty produkt.nazevObrazku}">
+                                            <img src="${produkt.nazevObrazku}" class="img-responsive" alt="${produkt.nazev}" style="height: 100px; width: auto;" />
+                                        </c:when>
+                                        <c:otherwise>  
+                                            <img src="<c:url value="/images/produkt_placeholder.png" />" class="img-responsive" alt="placeholder" style="height: 100px; width: auto;" />
+                                        </c:otherwise>
+                                    </c:choose> 
+                                </td>
+                                <td>Název <a href="${base_url}produkt.do?id=${item.value.produkt.idProdukt}"><strong>${item.value.produkt.nazev}</strong></a></td>
                                 <td>Cena za ks: <strong><fmt:formatNumber value="${item.value.produkt.cena}" pattern="#,##0.00" />&nbsp;Kč</strong></td>
                                 <td>
                                     Počet kusů: <input type="number" name="pocet[${item.key}]" value="${item.value.pocet}" min="1" />

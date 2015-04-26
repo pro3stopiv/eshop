@@ -4,7 +4,7 @@
 <c:forEach items="${produkty}" var="produkt">
     <div class="col-md-4 text-center produkt">        
         <div class="thumbnail img-responsive" style="text-decoration: none; ">
-            <a href="./produkt.do?id=${produkt.getIdProdukt()}">
+            <a href="${base_url}produkt.do?id=${produkt.getIdProdukt()}">
                 
                 <c:choose>
                     <c:when test="${!empty produkt.nazevObrazku}">

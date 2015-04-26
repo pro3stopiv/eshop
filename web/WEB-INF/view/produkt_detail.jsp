@@ -20,7 +20,7 @@
         <input type="submit" value="Přidat do košíku" />
     </form>
 
-    <p>Výrobce: <a href="./vyrobce.do?id=${produkt.vyrobce.idVyrobce}">${produkt.vyrobce.nazev}</a></p>
+    <p>Výrobce: <a href="${base_url}vyrobce.do?id=${produkt.vyrobce.idVyrobce}">${produkt.vyrobce.nazev}</a></p>
 
 </div>
 <div class="col-md-6">
