@@ -3,6 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="container-fluid">
     <h1>${kategorie.nazev}</h1>
+    <p>${kategorie.popis}</p>
     <br />
     <c:forEach items="${produkty}" var="produkt">
         <div class="col-md-4 text-center produkt">        
