@@ -32,8 +32,8 @@
                             <tr>
                                 <td>
                                     <c:choose>
-                                        <c:when test="${!empty produkt.nazevObrazku}">
-                                            <img src="${produkt.nazevObrazku}" class="img-responsive" alt="${produkt.nazev}" style="height: 100px; width: auto;" />
+                                        <c:when test="${!empty item.value.produkt.nazevObrazku}">
+                                            <img src="${item.value.produkt.nazevObrazku}" class="img-responsive" alt="${item.value.produkt.nazev}" style="height: 100px; width: auto;" />
                                         </c:when>
                                         <c:otherwise>  
                                             <img src="<c:url value="/images/produkt_placeholder.png" />" class="img-responsive" alt="placeholder" style="height: 100px; width: auto;" />
