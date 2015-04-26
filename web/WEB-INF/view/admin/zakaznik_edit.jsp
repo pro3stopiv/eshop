@@ -9,13 +9,13 @@
                 <h2 class="form-signin-heading">Údaje zákazníka</h2>
 
                 <label for="jmeno" class="col-sm-8 control-label">Jméno</label>
-                <input class="form-control" name="jmeno" <c:if test="${zakaznik != null}">value="${zakaznik.jmeno}"</c:if> />
+                <input class="form-control" name="jmeno" <c:if test="${zakaznik != null}">value="${zakaznik.jmeno}"</c:if> required />
 
                     <label for="prijmeni" class="col-sm-8 control-label">Příjmení</label>
-                    <input class="form-control" name="prijmeni" <c:if test="${zakaznik != null}">value="${zakaznik.prijmeni}"</c:if> />
+                    <input class="form-control" name="prijmeni" <c:if test="${zakaznik != null}">value="${zakaznik.prijmeni}"</c:if> required />
 
                     <label for="email" class="col-sm-8 control-label">Email</label>
-                    <input class="form-control" name="email" type="email" <c:if test="${zakaznik != null}">value="${zakaznik.email}"</c:if> />
+                    <input class="form-control" name="email" type="email" <c:if test="${zakaznik != null}">value="${zakaznik.email}"</c:if> required />
 
                     <label for="telefon" class="col-sm-8 control-label">Telefon</label>
                     <input class="form-control" name="telefon" <c:if test="${zakaznik != null}">value="${zakaznik.telefon}"</c:if> />
@@ -27,16 +27,16 @@
                 <div class="col-md-6">
                     <h4 class="form-signin-heading">Doručovací</h4>
                     <label for="dorucovaciUlice" class="col-sm-8 control-label">Ulice</label>
-                    <input class="form-control" name="dorucovaciUlice" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciUlice}"</c:if> />
+                    <input class="form-control" name="dorucovaciUlice" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciUlice}"</c:if> required />
 
                     <label for="dorucovaciCP" class="col-sm-8 control-label">Číslo popisné</label>
-                    <input class="form-control" name="dorucovaciCP" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciCP}"</c:if> />
+                    <input class="form-control" name="dorucovaciCP" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciCP}"</c:if> required />
 
                     <label for="dorucovaciMesto" class="col-sm-8 control-label">Město</label>
-                    <input class="form-control" name="dorucovaciMesto" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciMesto}"</c:if> />
+                    <input class="form-control" name="dorucovaciMesto" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciMesto}"</c:if> required />
 
                     <label for="dorucovaciPSC" class="col-sm-8 control-label">PSČ</label>
-                    <input class="form-control" name="dorucovaciPSC" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciPSC}"</c:if> />
+                    <input class="form-control" name="dorucovaciPSC" <c:if test="${zakaznik != null}">value="${zakaznik.adresa.dorucovaciPSC}"</c:if> required />
                 </div>
                 <div class="col-md-6">
                     <h4 class="form-signin-heading">Fakturační</h4>

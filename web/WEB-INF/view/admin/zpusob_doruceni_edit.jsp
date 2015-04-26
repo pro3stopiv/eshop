@@ -6,9 +6,9 @@
     <form method="post" action="${base_url}zpusob_doruceni.do" class="form-signin well">
         <h2 class="form-signin-heading">Způsob doručení</h2>
         <label for="nazev" class="col-sm-8 control-label">Název</label>
-        <input name="nazev" class="form-control" <c:if test="${zpusob_doruceni != null}">value="${zpusob_doruceni.nazevZpusobu}"</c:if> />
+        <input name="nazev" class="form-control" <c:if test="${zpusob_doruceni != null}">value="${zpusob_doruceni.nazevZpusobu}"</c:if> required />
             <label for="cena" class="col-sm-8 control-label">Cena</label>
-            <input name="cena" class="form-control"<c:if test="${zpusob_doruceni != null}">value="${zpusob_doruceni.cenaDoruceni}"</c:if> />
+            <input name="cena" class="form-control"<c:if test="${zpusob_doruceni != null}">value="${zpusob_doruceni.cenaDoruceni}"</c:if> required />
             <br />
             <div class="row-centered">
             <c:if test="${zpusob_doruceni != null}">

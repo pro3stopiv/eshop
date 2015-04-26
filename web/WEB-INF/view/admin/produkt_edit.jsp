@@ -8,13 +8,13 @@
         <label for="nazev" class="col-sm-8 control-label">Název</label>
         <input name="nazev" class="form-control"<c:if test="${produkt != null}">value="${produkt.nazev}"</c:if> />
             <label for="cena" class="col-sm-8 control-label">Cena</label>
-            <input name="cena" class="form-control"<c:if test="${produkt != null}">value="${produkt.cena}"</c:if> />
+            <input name="cena" class="form-control"<c:if test="${produkt != null}">value="${produkt.cena}"</c:if> required />
             <label for="popis" class="col-sm-8 control-label">Popis</label>
-            <textarea name="popis" class="form-control"><c:if test="${produkt != null}">${produkt.popis}</c:if></textarea>
+            <textarea name="popis" class="form-control" required><c:if test="${produkt != null}">${produkt.popis}</c:if></textarea>
             <label for="doba_dodani" class="col-sm-8 control-label">Doba dodání</label>
-            <input name="doba_dodani" class="form-control"<c:if test="${produkt != null}">value="${produkt.dobaDodani}"</c:if> />
+            <input name="doba_dodani" class="form-control"<c:if test="${produkt != null}">value="${produkt.dobaDodani}"</c:if> required />
             <label for="obsah_alkoholu" class="col-sm-8 control-label">Obsah alkoholu</label>
-            <input name="obsah_alkoholu" class="form-control"<c:if test="${produkt != null}">value="${produkt.obsahAlkoholu}"</c:if> />
+            <input name="obsah_alkoholu" class="form-control"<c:if test="${produkt != null}">value="${produkt.obsahAlkoholu}"</c:if> required />
             <br />
         <c:if test="${produkt != null}">
 
