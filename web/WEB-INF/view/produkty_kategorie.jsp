@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="container-fluid">
@@ -17,7 +18,7 @@
                     </c:choose>      
                     <h2>${produkt.getProdukt().getNazev()}</h2>
 
-                <h3 class="text-danger">${produkt.getProdukt().getCena()} Kč</h3>   
+		    <h3 class="text-danger"><fmt:formatNumber value="${produkt.cena}" pattern="#,##0.00 Kč" /></h3>   
                 </a>
             </div>
         </div>
